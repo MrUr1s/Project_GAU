@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Xml;
+using System;
 
 public class Hub : MonoBehaviour {
 
@@ -20,25 +21,7 @@ public class Hub : MonoBehaviour {
     bool isMelee;
 
     void Start () {
-        XmlDocument xmlDoc = new XmlDocument();
-        xmlDoc.Load(Application.dataPath+ "/Characters/Character.xml");
-        XmlElement xmlEle = xmlDoc.DocumentElement;
-        foreach (XmlNode xnode in xmlEle["Character"].ChildNodes)//attr, items, skills
-            foreach (XmlNode child in xnode.ChildNodes)
-                if (xnode.Name == "Attributes")
-                {
-                    print(child.Attributes[0].Name);
-                }
-                else if (xnode.Name == "Items")
-                {
-
-                }
-                else if (xnode.Name == "Skills")
-                {
-
-                }
-
-
+        
     }
 
     // Update is called once per frame

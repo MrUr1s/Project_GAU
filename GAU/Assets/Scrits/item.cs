@@ -8,6 +8,7 @@ namespace Assets.Scrits
     class item
     {
         public string name;
+        public int id;
         public bool isMelee;
         public int fiz_at = 0,
             fiz_def = 0,
@@ -16,9 +17,11 @@ namespace Assets.Scrits
             accuracy = 0,
             evasion = 0,
             speed = 0;
+        public string description;
 
-        public item (string name, bool isMelee, int fiz_at, int fiz_def, int mag_at, int mag_def, int accuracy, int evasion,int speed)
+        public item(string name,int id, bool isMelee, int fiz_at, int fiz_def, int mag_at, int mag_def, int accuracy, int evasion, int speed, string description)
         {
+            this.id = id;
             this.name = name;
             this.isMelee = isMelee;
             this.fiz_at = fiz_at;
@@ -28,6 +31,7 @@ namespace Assets.Scrits
             this.accuracy = accuracy;
             this.evasion = evasion;
             this.speed = speed;
+            this.description = description;
         }
     }
 }

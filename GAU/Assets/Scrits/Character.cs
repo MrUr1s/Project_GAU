@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using System.Xml;
+using System;
 using UnityEngine;
 
 
@@ -113,13 +114,56 @@ namespace Assets.Scrits
             }
         }
 
-        public void save()
-        {            
+        public void Load()
+        {
+            XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(Application.dataPath + "/Characters/Character.xml");
             XmlElement xmlEle = xmlDoc.DocumentElement;
             foreach (XmlNode xnode in xmlEle["Character"].ChildNodes)//attr, items, skills
                 foreach (XmlNode child in xnode.ChildNodes)
-                    Debug.Log(child.Name);
+                    if (xnode.Name == "Attributes")
+                    {
+                        for (int i = 0; i < child.Attributes.Count; i++)
+                            switch (child.Attributes[i].Name)
+                            {
+                                case "rase":
+                                    rase = child.Attributes[i].Value;
+                                    break;
+                                case "clas":
+                                    clas = child.Attributes[i].Value;
+                                    break;
+                                case "fiz_at":
+                                    fiz_at = Convert.ToInt32(child.Attributes[i].Value);
+                                    break;
+                                case "fiz_def":
+                                    fiz_def = Convert.ToInt32(child.Attributes[i].Value);
+                                    break;
+                                case "mag_at":
+                                    mag_at = Convert.ToInt32(child.Attributes[i].Value);
+                                    break;
+                                case "mag_def":
+                                    mag_def = Convert.ToInt32(child.Attributes[i].Value);
+                                    break;
+                                case "accuracy":
+                                    accuracy = Convert.ToInt32(child.Attributes[i].Value);
+                                    break;
+                                case "speed":
+                                    speed = Convert.ToInt32(child.Attributes[i].Value);
+                                    break;
+                                case "isMelee":
+                                    isMelee = Convert.ToBoolean(child.Attributes[i].Value);
+                                    break;
+                            }
+                    }
+                    else if (xnode.Name == "Items")
+                    {
+                      // item_p.Add(
+                        //    child.Attributes[i].Value);
+                    }
+                    else if (xnode.Name == "Skills")
+                    {
+
+                    }
 
         }
         public void add_characteristic(string characteristic, int add)
@@ -128,21 +172,33 @@ namespace Assets.Scrits
             {
                 case "fiz_at":
                     fiz_at += add;
+                    if (fiz_at > 200)
+                        fiz_at = 200;
                     break;
                 case "fiz_def":
                     fiz_def += add;
+                    if (fiz_def > 100)
+                        fiz_def = 100;
                     break;
                 case "mag_at":
                     mag_at += add;
+                    if (mag_at > 200)
+                        mag_at = 200;
                     break;
                 case "mag_def":
                     mag_def += add;
+                    if (mag_def > 100)
+                        mag_def = 100;
                     break;
                 case "accuracy":
                     accuracy += add;
+                    if (accuracy > 200)
+                        accuracy = 200;
                     break;
                 case "evasion":
                     evasion += add;
+                    if (accuracy > 100)
+                        accuracy = 100;
                     break;
                 case "speed":
                     speed += add;

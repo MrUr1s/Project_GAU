@@ -1,6 +1,5 @@
 <Data>
-	<language lang="Rus">
-    
+	<language lang="Rus">    
 		<rus key="Continue" text="Продолжить"/>
 		<rus key="NewGame" text="Новая игра"/>
 		<rus key="Option" text="Настройки"/>
@@ -23,8 +22,8 @@
 		<rus key="Berserk" text="Берсерк"/>
 		<rus key="Sorcerer" text="Волшебник"/>
 		<rus key="Gunslinger" text="Стрелок"/>
-		<rus key="Spiritmaster" text="Заклинатель"/>    
-	</language>
+    <rus key="Spiritmaster" text="Заклинатель"/>
+  </language>
 	
 	<language lang="En">
 		<rus key="Continue" text="Continue"/>

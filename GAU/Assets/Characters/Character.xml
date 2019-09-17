@@ -2,7 +2,7 @@
 	<Character Character="Character">
     
     <Attributes Attributes="attribute">
-      <Attribute rase = "rase"/>
+      <Attribute rase = "rase1"/>
       <Attribute clas = "clas"/>
       <Attribute fiz_at = "0"/>
       <Attribute fiz_def = "0"/>
@@ -15,7 +15,8 @@
     </Attributes>
     
     <Items Items="item">
-      <Item Item="test2" value="Выйти"/>
+      <Item Armor="Armor_name"/>
+      <Item Weapon="Weapon_name"/>
     </Items>
     
     <Skills Skills="skill">

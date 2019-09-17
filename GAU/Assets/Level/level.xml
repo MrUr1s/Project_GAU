@@ -1,0 +1,15 @@
+<Data>
+  <Level Level="Level">
+    <Pos Pos="Pos_gg">
+      <Item pos_x="0" pos_y="0"/>
+    </Pos>
+
+    <Pos Pos="Pos_level">
+      <Item level="0" pos_x="0" pos_y="0"/>
+      <Item level="1" pos_x="0" pos_y="0"/>
+      <Item level="2" pos_x="0" pos_y="0"/>
+    </Pos>
+
+
+  </Level>
+</Data>
