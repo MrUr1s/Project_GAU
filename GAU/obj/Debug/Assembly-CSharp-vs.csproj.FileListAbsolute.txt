@@ -1,0 +1,15 @@
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\Assembly-CSharp.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\Assembly-CSharp.pdb
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\UnityEditor.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\UnityEngine.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\UnityEngine.UI.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\Mono.Cecil.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\Unity.SerializationLogic.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\Unity.DataContract.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\ICSharpCode.NRefactory.dll
+D:\Github\Project_GAU\GAY\Temp\bin\Debug\Unity.CecilTools.dll
+D:\Github\Project_GAU\GAY\obj\Debug\Assembly-CSharp-vs.csprojAssemblyReference.cache
+D:\Github\Project_GAU\GAY\obj\Debug\Assembly-CSharp-vs.csproj.CoreCompileInputs.cache
+D:\Github\Project_GAU\GAY\obj\Debug\Assembly-CSharp-vs.csproj.CopyComplete
+D:\Github\Project_GAU\GAY\obj\Debug\Assembly-CSharp.dll
+D:\Github\Project_GAU\GAY\obj\Debug\Assembly-CSharp.pdb
