@@ -9,10 +9,10 @@ public class Lang : MonoBehaviour {
     public string lang;
     void Awake()
     {
-
+        PlayerPrefs.SetString("Lang", "rus");
+        PlayerPrefs.Save();
     }
-
-    public void Start()
+    void Start()
     {
         lang = PlayerPrefs.GetString("Lang");
         Text txt_race = GetComponent<Text>();        

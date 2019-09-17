@@ -1,18 +1,6 @@
 <Data>
-	<language lang="Rus">
-    
-		<rus key="Continue" text="Продолжить"/>
-		<rus key="NewGame" text="Новая игра"/>
-		<rus key="Option" text="Настройки"/>
-    <rus key="Exit" text="Выйти"/>
-
-    <rus key="Exit?" text="Выйти?"/>
-    <rus key="Yes" text="Да"/>
-    <rus key="No" text="Нет"/>
-
-    <rus key="Lang" text="Язык"/>
-    
-    <rus key="Orc" text="Орк"/>
+	<language lang="rus"> 
+		<rus key="Orc" text="Орк"/>
 		<rus key="Human" text="Человек"/>
 		<rus key="Elf" text="Эльф"/>
 		<rus key="Robot" text="Робот"/>
@@ -23,15 +11,10 @@
 		<rus key="Berserk" text="Берсерк"/>
 		<rus key="Sorcerer" text="Волшебник"/>
 		<rus key="Gunslinger" text="Стрелок"/>
-		<rus key="Spiritmaster" text="Заклинатель"/>    
+		<rus key="Spiritmaster" text="Заклинатель"/>
 	</language>
 	
-	<language lang="En">
-		<rus key="Continue" text="Continue"/>
-		<rus key="NewGame" text="New game"/>
-		<rus key="Option" text="Option"/>
-		<rus key="Exit" text="Exit"/>
-		
+	<language lang="en"> 
 		<en key="Orc" text="Orc"/>
 		<en key="Human" text="Human"/>
 		<en key="Elf" text="Elf"/>

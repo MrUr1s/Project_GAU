@@ -3,42 +3,43 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Xml;
 
+
 public class create_GG : MonoBehaviour {
 
-    public GameObject[] panel, characters;
+    public GameObject[] panel;
     public GameObject sphere, particle;
-    string race="Orc", clas= "Berserk";
-    void Start () {
+    public GameObject[] character;
+    void Update () {
+        
     }
 	
 	// Update is called once per frame
-	void select_ch (string race) {
-        for (int y = 0; y < characters.Length; y++)
-            if (characters[y].name != race)
-                characters[y].SetActive(false);
+	void select_ch (int i) {
+        for (int y = 0; y < character.Length; y++)
+            if (y != i)
+                character[y].SetActive(false);
             else
-                characters[y].SetActive(true);
+                character[y].SetActive(true);
         
     }
-    public void SelectRase(string race)
+    public void SelectRase(int i)
     {
-        this.race = race;
-        select_ch(race);
-        switch (race)
+        select_ch(i);
+        switch (i)
         {
-            case "Orc":
+            case 0:
                 sphere.GetComponent<Renderer>().material.color = Color.green;                
                 break;
 
-            case "Human":
+            case 1:
                 sphere.GetComponent<Renderer>().material.color = Color.yellow;
                  break;
 
-            case "Elf":
+            case 2:
                 sphere.GetComponent<Renderer>().material.color = Color.blue;
                  break;
 
-            case "Robot":
+            case 3:
                 sphere.GetComponent<Renderer>().material.color = Color.grey;
                  break;
 
@@ -46,25 +47,24 @@ public class create_GG : MonoBehaviour {
                 break;
         }
     }
-    public void SelectClass(string clas)
+    public void SelectClass(int i)
     {
-        this.clas = clas;
         particle.SetActive(false);        
-        switch (clas)
+        switch (i)
         {
-            case "Berserk":
+            case 0:
                 particle.GetComponent<ParticleSystem>().startColor = Color.red;
                 break;
 
-            case "Sorcerer":
+            case 1:
                 particle.GetComponent<ParticleSystem>().startColor = Color.yellow;
                 break;
 
-            case "Gunslinger":
+            case 2:
                 particle.GetComponent<ParticleSystem>().startColor = Color.blue;
                 break;
 
-            case "Spiritmaster":
+            case 3:
                 particle.GetComponent<ParticleSystem>().startColor = Color.green;
                 break;
 
@@ -75,27 +75,16 @@ public class create_GG : MonoBehaviour {
     }
     public void Next(int i1)
     {
-        if (i1 != 1)
-        {
-            panel[i1].SetActive(false);
-            panel[i1 + 1].SetActive(true);
-        }
-        else
-        {
-            Application.LoadLevel(2);
-            Assets.Scrits.Global.character = new Assets.Scrits.Character(race, clas);
-            
-
-        }
+        panel[i1].SetActive(false);
+        panel[i1 + 1].SetActive(true);
     }
     public void Back(int i1)
     {
-        if (i1 != 0)
-        {
-            panel[i1].SetActive(false);
-            panel[i1 - 1].SetActive(true);
-        }else
-            Application.LoadLevel(0);
+        panel[i1].SetActive(false);
+        panel[i1-1].SetActive(true);
     }
+    public void create()
+    {
 
+    }
 }

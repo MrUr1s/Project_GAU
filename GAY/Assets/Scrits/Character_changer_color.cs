@@ -7,5 +7,6 @@ public class Character_changer_color : MonoBehaviour {
 	// Update is called once per frame
 	void OnGUI()
     {
+        
     }
 }
