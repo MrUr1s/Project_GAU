@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections;
 using System.Xml;
+using System.Xml.Linq;
 using System;
 using UnityEngine;
 
@@ -9,8 +10,6 @@ namespace Assets.Scrits
 {
     class Character
     {
-        XmlDocument xmlDoc = new XmlDocument();
-
         public string rase;
         public string clas;
         public int fiz_at=0,
@@ -22,6 +21,11 @@ namespace Assets.Scrits
             speed=0;        
         public bool isMelee;
         public List<item> item_p;
+
+        public Character()
+        {
+            Load();
+        }
         public Character(string rase, string clas)
         {
             this.clas = clas;
@@ -112,59 +116,73 @@ namespace Assets.Scrits
                     speed = 0;
                     break;
             }
+            Save();
         }
 
         public void Load()
         {
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(Application.dataPath + "/Characters/Character.xml");
-            XmlElement xmlEle = xmlDoc.DocumentElement;
-            foreach (XmlNode xnode in xmlEle["Character"].ChildNodes)//attr, items, skills
-                foreach (XmlNode child in xnode.ChildNodes)
-                    if (xnode.Name == "Attributes")
-                    {
-                        for (int i = 0; i < child.Attributes.Count; i++)
-                            switch (child.Attributes[i].Name)
-                            {
-                                case "rase":
-                                    rase = child.Attributes[i].Value;
-                                    break;
-                                case "clas":
-                                    clas = child.Attributes[i].Value;
-                                    break;
-                                case "fiz_at":
-                                    fiz_at = Convert.ToInt32(child.Attributes[i].Value);
-                                    break;
-                                case "fiz_def":
-                                    fiz_def = Convert.ToInt32(child.Attributes[i].Value);
-                                    break;
-                                case "mag_at":
-                                    mag_at = Convert.ToInt32(child.Attributes[i].Value);
-                                    break;
-                                case "mag_def":
-                                    mag_def = Convert.ToInt32(child.Attributes[i].Value);
-                                    break;
-                                case "accuracy":
-                                    accuracy = Convert.ToInt32(child.Attributes[i].Value);
-                                    break;
-                                case "speed":
-                                    speed = Convert.ToInt32(child.Attributes[i].Value);
-                                    break;
-                                case "isMelee":
-                                    isMelee = Convert.ToBoolean(child.Attributes[i].Value);
-                                    break;
-                            }
-                    }
-                    else if (xnode.Name == "Items")
-                    {
-                      // item_p.Add(
-                        //    child.Attributes[i].Value);
-                    }
-                    else if (xnode.Name == "Skills")
-                    {
+            string path = "Assets/Characters/Character.xml";
+            XDocument xDoc = XDocument.Load(path);
+            XElement root = xDoc.Element("Character");
+            foreach (XElement xEle in root.Elements("Attributes"))
+            {
+                rase = xEle.Element("rase").Value.Trim();
+                clas = xEle.Element("clas").Value.Trim();
+                fiz_at = Convert.ToInt32(xEle.Element("fiz_at").Value.Trim());
+                fiz_def = Convert.ToInt32(xEle.Element("fiz_def").Value.Trim());
+                mag_at = Convert.ToInt32(xEle.Element("mag_at").Value.Trim());
+                mag_def = Convert.ToInt32(xEle.Element("mag_def").Value.Trim());
+                accuracy = Convert.ToInt32(xEle.Element("accuracy").Value.Trim());
+                evasion = Convert.ToInt32(xEle.Element("evasion").Value.Trim());
+                speed = Convert.ToInt32(xEle.Element("speed").Value.Trim());
+                isMelee = Convert.ToBoolean(xEle.Element("isMelee").Value.Trim());
+            }
+            foreach (XElement xEle in root.Elements("Item_use"))
+            {
+                string s = xEle.Element("Item").Value.Trim();
+            }
+            foreach (XElement xEle in root.Elements("Items"))
+            {
+                string s = xEle.Element("Item").Value.Trim();
+            }
+            foreach (XElement xEle in root.Elements("Skills"))
+            {
+                string s = xEle.Element("Skill").Value.Trim();
+            }
 
-                    }
 
+        }
+        public void Save()
+        {
+            string path = "Assets/Characters/Character.xml";
+            XDocument xDoc = XDocument.Load(path);
+            XElement root = xDoc.Element("Character");
+            foreach (XElement xEle in root.Elements("Attributes"))
+            {
+                xEle.Element("rase").Value = rase;
+                xEle.Element("clas").Value = clas;
+                xEle.Element("fiz_at").Value = fiz_at.ToString();
+                xEle.Element("fiz_def").Value = fiz_def.ToString();
+                xEle.Element("mag_at").Value = mag_at.ToString();
+                xEle.Element("mag_def").Value = mag_def.ToString();
+                xEle.Element("accuracy").Value = accuracy.ToString();
+                xEle.Element("evasion").Value = evasion.ToString();
+                xEle.Element("speed").Value = speed.ToString();
+                xEle.Element("isMelee").Value = isMelee.ToString();
+            }
+            foreach (XElement xEle in root.Elements("Item_use"))
+            {
+                string s = xEle.Element("Item").Value.Trim();
+            }
+            foreach (XElement xEle in root.Elements("Items"))
+            {
+                string s = xEle.Element("Item").Value.Trim();
+            }
+            foreach (XElement xEle in root.Elements("Skills"))
+            {
+                string s = xEle.Element("Skill").Value.Trim();
+            }
+            xDoc.Save(path);
         }
         public void add_characteristic(string characteristic, int add)
         {

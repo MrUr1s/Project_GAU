@@ -4,43 +4,43 @@ using System.Collections;
 using System.Xml;
 using System;
 
-public class Hub : MonoBehaviour {
+namespace Assets.Scrits {
+    public class Hub : MonoBehaviour {
 
-    public GameObject stat_panel;
-    public GameObject[] stats;
-    
+        public GameObject stat_panel,item;
+        public GameObject[] stats;
+        Character character;
+        public Sprite sprite,sp;
 
-    string rase, clas;
-    int fiz_at,
-        fiz_def,
-        mag_at,
-        mag_def,
-        accuracy,
-        evasion,
-        speed;
-    bool isMelee;
+      
 
-    void Start () {
-        
+        void Awake()
+        {
+            character = new Character();
+        }
+        void Start()
+        {
+        }
+
+        // Update is called once per frame
+        void Update() {
+
+        }
+        public void stat()
+        {
+            stat_panel.SetActive(!stat_panel.activeSelf);
+
+            stats[0].GetComponent<Text>().text = character.rase;
+            stats[1].GetComponent<Text>().text = character.clas;
+            stats[2].GetComponent<Text>().text = character.fiz_at.ToString();
+            stats[3].GetComponent<Text>().text = character.fiz_def.ToString();
+            stats[4].GetComponent<Text>().text = character.mag_at.ToString();
+            stats[5].GetComponent<Text>().text = character.mag_def.ToString();
+            stats[6].GetComponent<Text>().text = character.accuracy.ToString();
+            stats[7].GetComponent<Text>().text = character.evasion.ToString();
+            stats[8].GetComponent<Text>().text = character.speed.ToString();
+            stats[9].GetComponent<Text>().text = character.isMelee.ToString();
+        }
     }
 
-    // Update is called once per frame
-    void Update () {
-	
-	}
-    public void stat()
-    {
-        stat_panel.SetActive(!stat_panel.activeSelf);
-
-        stats[0].GetComponent<Text>().text = rase;
-        stats[1].GetComponent<Text>().text = clas;
-        stats[2].GetComponent<Text>().text = fiz_at.ToString();
-        stats[3].GetComponent<Text>().text = fiz_def.ToString();
-        stats[4].GetComponent<Text>().text = mag_at.ToString();
-        stats[5].GetComponent<Text>().text = mag_def.ToString();
-        stats[6].GetComponent<Text>().text = accuracy.ToString();
-        stats[7].GetComponent<Text>().text = evasion.ToString();
-        stats[8].GetComponent<Text>().text = speed.ToString();
-        stats[9].GetComponent<Text>().text = isMelee.ToString();
-    }
 }

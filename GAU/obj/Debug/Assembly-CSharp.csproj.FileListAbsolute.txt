@@ -1,0 +1,2 @@
+D:\Github\Project_GAU\GAU\obj\Debug\Assembly-CSharp.dll
+D:\Github\Project_GAU\GAU\obj\Debug\Assembly-CSharp.pdb

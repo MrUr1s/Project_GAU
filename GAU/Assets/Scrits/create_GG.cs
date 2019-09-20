@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Xml;
+using UnityEngine.SceneManagement;
 
 public class create_GG : MonoBehaviour {
 
@@ -82,7 +83,7 @@ public class create_GG : MonoBehaviour {
         }
         else
         {
-            Application.LoadLevel(2);
+            SceneManager.LoadScene(2);
             Assets.Scrits.Global.character = new Assets.Scrits.Character(race, clas);
             
 
@@ -95,7 +96,7 @@ public class create_GG : MonoBehaviour {
             panel[i1].SetActive(false);
             panel[i1 - 1].SetActive(true);
         }else
-            Application.LoadLevel(0);
+            SceneManager.LoadScene(0);
     }
 
 }

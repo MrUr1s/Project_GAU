@@ -1,27 +1,26 @@
-<Data>
-	<Character Character="Character">
-    
-    <Attributes Attributes="attribute">
-      <Attribute rase = "rase1"/>
-      <Attribute clas = "clas"/>
-      <Attribute fiz_at = "0"/>
-      <Attribute fiz_def = "0"/>
-      <Attribute mag_at = "0"/>
-      <Attribute mag_def = "0"/>
-      <Attribute accuracy = "0"/>
-      <Attribute evasion = "0"/>
-      <Attribute speed = "0"/>
-      <Attribute isMelee = "false"/>
-    </Attributes>
-    
-    <Items Items="item">
-      <Item Armor="Armor_name"/>
-      <Item Weapon="Weapon_name"/>
-    </Items>
-    
-    <Skills Skills="skill">
-      <Skill Skill="test3" value="Выйти"/>
-    </Skills>
-    
-	</Character>
-</Data>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Character>
+  <Attributes>
+    <rase>Elf</rase>
+    <clas>Sorcerer</clas>
+    <fiz_at>20</fiz_at>
+    <fiz_def>10</fiz_def>
+    <mag_at>150</mag_at>
+    <mag_def>90</mag_def>
+    <accuracy>100</accuracy>
+    <evasion>30</evasion>
+    <speed>0</speed>
+    <isMelee>False</isMelee>
+  </Attributes>
+  <Item_use>
+    <Item> Armor_name1 </Item>
+    <Item> Weapon_name1 </Item>
+  </Item_use>
+  <Items>
+    <Item> Armor_name2 </Item>
+    <Item> Weapon_name2 </Item>
+  </Items>
+  <Skills>
+    <Skill> 213123 </Skill>
+  </Skills>
+</Character>

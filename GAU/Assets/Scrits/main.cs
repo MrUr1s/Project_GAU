@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class main : MonoBehaviour {
@@ -33,15 +34,15 @@ public class main : MonoBehaviour {
         else
             PlayerPrefs.SetInt("option", 0);
         PlayerPrefs.Save();
-        Application.LoadLevel(0);
+        SceneManager.LoadScene(0);
     }
     public void New_Game()
     {
-        Application.LoadLevel(1);
+        SceneManager.LoadScene(1);
     }
     public void Continue()
     {
-        Application.LoadLevel(2);
+        SceneManager.LoadScene(2);
     }
     public void panel(string name)
     {
