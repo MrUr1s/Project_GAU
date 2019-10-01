@@ -23,6 +23,17 @@
 		<rus key="Sorcerer" text="Волшебник"/>
 		<rus key="Gunslinger" text="Стрелок"/>
     <rus key="Spiritmaster" text="Заклинатель"/>
+    
+    <rus key="Rase" text="Раса"/>
+    <rus key="Class" text="Класс"/>
+    <rus key="Fiz_at" text="Физ. атака"/>
+    <rus key="Fiz_def" text="Физ. защита"/>
+    <rus key="Mag_at" text="Маг. атака"/>
+    <rus key="Mag_def" text="Маг. защита"/>
+    <rus key="Accuracy" text="Точность"/>
+    <rus key="Evasion" text="Уклонение"/>
+    <rus key="Speed" text="Скорость"/>
+    <rus key="isMelee" text="Ближний бой"/>
   </language>
 	
 	<language lang="En">

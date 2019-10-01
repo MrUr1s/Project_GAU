@@ -1,0 +1,10 @@
+﻿1>------ Перестроение всех файлов начато: проект: Assembly-CSharp, Конфигурация: Debug Any CPU ------
+1>D:\Github\Project_GAU\GAU\Assets\Items\item.cs(12,23,12,27): warning CS0108: '"item.name" скрывает наследуемый член "Object.name". Если скрытие было намеренным, используйте ключевое слово new.
+1>D:\Github\Project_GAU\GAU\Assets\Scrits\create_GG.cs(57,17,57,67): warning CS0618: 'ParticleSystem.startColor" является устаревшим: 'startColor property is deprecated. Use main.startColor instead.'
+1>D:\Github\Project_GAU\GAU\Assets\Scrits\create_GG.cs(61,17,61,67): warning CS0618: 'ParticleSystem.startColor" является устаревшим: 'startColor property is deprecated. Use main.startColor instead.'
+1>D:\Github\Project_GAU\GAU\Assets\Scrits\create_GG.cs(65,17,65,67): warning CS0618: 'ParticleSystem.startColor" является устаревшим: 'startColor property is deprecated. Use main.startColor instead.'
+1>D:\Github\Project_GAU\GAU\Assets\Scrits\create_GG.cs(69,17,69,67): warning CS0618: 'ParticleSystem.startColor" является устаревшим: 'startColor property is deprecated. Use main.startColor instead.'
+1>D:\Github\Project_GAU\GAU\Assets\Scrits\Character.cs(23,27,23,33): warning CS0649: Полю "Character.item_p" нигде не присваивается значение, поэтому оно всегда будет иметь значение по умолчанию null.
+1>D:\Github\Project_GAU\GAU\Assets\Scrits\Global.cs(12,34,12,39): warning CS0649: Полю "Global.items" нигде не присваивается значение, поэтому оно всегда будет иметь значение по умолчанию null.
+1>  Assembly-CSharp -> D:\Github\Project_GAU\GAU\Temp\bin\Debug\Assembly-CSharp.dll
+========== Перестроение всех проектов: успешно: 1, с ошибками: 0, пропущено: 0 ==========

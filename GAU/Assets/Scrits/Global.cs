@@ -10,6 +10,9 @@ namespace Assets.Scrits
     {
         public static Character character;
         public static List<item> items;
+
+
+
         public void Load_item()
         {
             int id = 0;
@@ -49,7 +52,7 @@ namespace Assets.Scrits
         }
         public void Save_item()
         {
-
+        
         }
 
     }

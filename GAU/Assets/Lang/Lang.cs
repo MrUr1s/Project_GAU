@@ -7,17 +7,14 @@ public class Lang : MonoBehaviour {
 
     public TextAsset text_asset;
     public string lang;
-    void Awake()
-    {
-
-    }
 
     public void Start()
     {
         lang = PlayerPrefs.GetString("Lang");
-        Text txt_race = GetComponent<Text>();        
+        Text txt_race = GetComponent<Text>();  
+        
         XmlDocument xmld = new XmlDocument();
-        xmld.LoadXml(text_asset.text);
+        xmld.LoadXml(text_asset.text);        
         XmlElement xmle = xmld.DocumentElement;
         foreach (XmlNode xnode in xmle)        
             if (xnode.Attributes.Count > 0)

@@ -1,35 +1,34 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using System.Xml;
+using System.Xml.Linq;
 using System;
 
 namespace Assets.Scrits {
     public class Hub : MonoBehaviour {
 
-        public GameObject stat_panel,item;
+        public GameObject stat_panel,item,window;
         public GameObject[] stats;
-        Character character;
-        public Sprite sprite,sp;
-
-      
+       Character character;
 
         void Awake()
         {
-            character = new Character();
+          
+
         }
         void Start()
         {
+
         }
 
         // Update is called once per frame
         void Update() {
-
+            
         }
         public void stat()
         {
-            stat_panel.SetActive(!stat_panel.activeSelf);
-
+            character = new Character();
+            stat_panel.SetActive(!stat_panel.activeSelf);            
             stats[0].GetComponent<Text>().text = character.rase;
             stats[1].GetComponent<Text>().text = character.clas;
             stats[2].GetComponent<Text>().text = character.fiz_at.ToString();

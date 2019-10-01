@@ -53,20 +53,27 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Characters\Character.cs" />
+     <Compile Include="Assets\Enemy.cs" />
+     <Compile Include="Assets\Fight.cs" />
      <Compile Include="Assets\Items\Invetory_panel_create.cs" />
      <Compile Include="Assets\Items\item.cs" />
      <Compile Include="Assets\Lang\Lang.cs" />
-     <Compile Include="Assets\Scrits\Character.cs" />
+     <Compile Include="Assets\Player_sc.cs" />
      <Compile Include="Assets\Scrits\Character_changer_color.cs" />
+     <Compile Include="Assets\Scrits\Collision_level.cs" />
      <Compile Include="Assets\Scrits\create_GG.cs" />
      <Compile Include="Assets\Scrits\Global.cs" />
      <Compile Include="Assets\Scrits\Hub.cs" />
      <Compile Include="Assets\Scrits\main.cs" />
+     <Compile Include="Assets\Scrits\Maps.cs" />
      <Compile Include="Assets\Scrits\passive.cs" />
      <Compile Include="Assets\Scrits\Skills.cs" />
+     <Compile Include="Assets\Scrits\smoothcamera.cs" />
      <Compile Include="Assets\Scrits\Test.cs" />
-     <None Include="Assets\Characters\Character.xml" />
+     <None Include="Assets\Character.xml" />
      <None Include="Assets\Level\level.xml" />
+     <None Include="Assets\1.xml" />
      <None Include="Assets\Items\Items.xml" />
      <None Include="Assets\Lang\Lang.xml" />
  <Reference Include="Unity.TextMeshPro.Editor">

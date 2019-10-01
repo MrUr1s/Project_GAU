@@ -1,0 +1,25 @@
+﻿<Character>
+  <Attributes>
+    <rase>Human</rase>
+    <clas>Gunslinger</clas>
+    <fiz_at>100</fiz_at>
+    <fiz_def>40</fiz_def>
+    <mag_at>60</mag_at>
+    <mag_def>40</mag_def>
+    <accuracy>140</accuracy>
+    <evasion>60</evasion>
+    <speed>0</speed>
+    <isMelee>False</isMelee>
+  </Attributes>
+  <Item_use>
+    <Item> Armor_name1 </Item>
+    <Item> Weapon_name1 </Item>
+  </Item_use>
+  <Items>
+    <Item> Armor_name2 </Item>
+    <Item> Weapon_name2 </Item>
+  </Items>
+  <Skills>
+    <Skill> 213123 </Skill>
+  </Skills>
+</Character>

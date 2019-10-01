@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Character>
+  <Attributes>
+    <rase>Elf</rase>
+    <clas>Spiritmaster</clas>
+    <fiz_at>40</fiz_at>
+    <fiz_def>50</fiz_def>
+    <mag_at>70</mag_at>
+    <mag_def>90</mag_def>
+    <accuracy>60</accuracy>
+    <evasion>20</evasion>
+    <speed>0</speed>
+    <isMelee>False</isMelee>
+  </Attributes>
+  <Item_use>
+    <Item> Armor_name1 </Item>
+    <Item> Weapon_name1 </Item>
+  </Item_use>
+  <Items>
+    <Item> Armor_name2 </Item>
+    <Item> Weapon_name2 </Item>
+  </Items>
+  <Skills>
+    <Skill> 213123 </Skill>
+  </Skills>
+</Character>
