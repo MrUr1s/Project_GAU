@@ -37,10 +37,10 @@
   </language>
 	
 	<language lang="En">
-		<rus key="Continue" text="Continue"/>
-		<rus key="NewGame" text="New game"/>
-		<rus key="Option" text="Option"/>
-		<rus key="Exit" text="Exit"/>
+    <En key="Continue" text="Continue"/>
+    <En key="NewGame" text="New game"/>
+    <En key="Option" text="Option"/>
+    <En key="Exit" text="Exit"/>
 		
 		<en key="Orc" text="Orc"/>
 		<en key="Human" text="Human"/>

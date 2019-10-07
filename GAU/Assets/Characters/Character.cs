@@ -20,7 +20,7 @@ namespace Assets.Scrits
             evasion=0,
             speed=0;        
         public bool isMelee=false;
-        public List<item> item_p;
+        public List<Items> item_p;
 
         public Character()
         {
@@ -118,83 +118,7 @@ namespace Assets.Scrits
                     break;
             }
             Save();
-        }
-
-        /*
-       public void Load()
-        {
-            try
-            {
-                XDocument xDoc = XDocument.Load("jar: file: //" + Application.dataPath + "! / Assets" + path);
-                XElement root = xDoc.Element("Character");
-                foreach (XElement xEle in root.Elements("Attributes"))
-                {
-                    rase = xEle.Element("rase").Value.Trim();
-                    clas = xEle.Element("clas").Value.Trim();
-                    fiz_at = Convert.ToInt32(xEle.Element("fiz_at").Value.Trim());
-                    fiz_def = Convert.ToInt32(xEle.Element("fiz_def").Value.Trim());
-                    mag_at = Convert.ToInt32(xEle.Element("mag_at").Value.Trim());
-                    mag_def = Convert.ToInt32(xEle.Element("mag_def").Value.Trim());
-                    accuracy = Convert.ToInt32(xEle.Element("accuracy").Value.Trim());
-                    evasion = Convert.ToInt32(xEle.Element("evasion").Value.Trim());
-                    speed = Convert.ToInt32(xEle.Element("speed").Value.Trim());
-                    isMelee = Convert.ToBoolean(xEle.Element("isMelee").Value.Trim());
-                }
-                foreach (XElement xEle in root.Elements("Item_use"))
-                {
-                    string s = xEle.Element("Item").Value.Trim();
-                }
-                foreach (XElement xEle in root.Elements("Items"))
-                {
-                    string s = xEle.Element("Item").Value.Trim();
-                }
-                foreach (XElement xEle in root.Elements("Skills"))
-                {
-                    string s = xEle.Element("Skill").Value.Trim();
-                }
-            }
-            catch (Exception e)
-            {
-                rase = e.Message;
-                clas = Application.dataPath;
-            }
-
-        }
-
-        public void Save()
-            {
-                XDocument xDoc = XDocument.Load(path);
-                XElement root = xDoc.Element("Character");
-                foreach (XElement xEle in root.Elements("Attributes"))
-                {
-                    xEle.Element("rase").Value = rase;
-                    xEle.Element("clas").Value = clas;
-                    xEle.Element("fiz_at").Value = fiz_at.ToString();
-                    xEle.Element("fiz_def").Value = fiz_def.ToString();
-                    xEle.Element("mag_at").Value = mag_at.ToString();
-                    xEle.Element("mag_def").Value = mag_def.ToString();
-                    xEle.Element("accuracy").Value = accuracy.ToString();
-                    xEle.Element("evasion").Value = evasion.ToString();
-                    xEle.Element("speed").Value = speed.ToString();
-                    xEle.Element("isMelee").Value = isMelee.ToString();
-                }
-                foreach (XElement xEle in root.Elements("Item_use"))
-                {
-                    string s = xEle.Element("Item").Value.Trim();
-                }
-                foreach (XElement xEle in root.Elements("Items"))
-                {
-                    string s = xEle.Element("Item").Value.Trim();
-                }
-                foreach (XElement xEle in root.Elements("Skills"))
-                {
-                    string s = xEle.Element("Skill").Value.Trim();
-                }
-                xDoc.Save(path);
-            }
-               
-        */
-
+        }        
             public void Load()
         {
             rase= PlayerPrefs.GetString("rase");
@@ -263,31 +187,13 @@ namespace Assets.Scrits
             }
         }
        
-        public void add_item(item item)
+        public void add_item(Items item)
         {
             item_p.Add(item);
-            {
-                add_characteristic("fiz_at", item.fiz_at);
-                add_characteristic("fiz_def", item.fiz_def);
-                add_characteristic("mag_at", item.mag_at);
-                add_characteristic("mag_def", item.mag_def);
-                add_characteristic("accuracy", item.accuracy);
-                add_characteristic("evasion", item.evasion);
-                add_characteristic("speed", item.speed);
-            }
         }
-        public void del_item(item item)
+        public void del_item(Items item)
         {
             item_p.Remove(item);
-            {
-                add_characteristic("fiz_at", -item.fiz_at);
-                add_characteristic("fiz_def", -item.fiz_def);
-                add_characteristic("mag_at", -item.mag_at);
-                add_characteristic("mag_def", -item.mag_def);
-                add_characteristic("accuracy", -item.accuracy);
-                add_characteristic("evasion", -item.evasion);
-                add_characteristic("speed", -item.speed);
-            }
         }
     }
 }

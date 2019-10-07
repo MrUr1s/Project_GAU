@@ -10,22 +10,34 @@ public class Maps : MonoBehaviour
     public int count = 0;
     public int size = 100;
     bool isclick = false;
-    // Start is called before the first frame updatet;
+    GameObject[] temp;
+
     void Start()
     {
-        GameObject[] temp = new GameObject[count];
+        temp = new GameObject[count];
         for (int i = 0; i < count; i++)
         {
             Vector3 temp_pos = new Vector3(0,0);
             if (i!=0)
-                temp_pos = getRandomPos(size * 5);
-            temp[i] = Instantiate(levels, temp_pos+ getRandomPos(size*5), Quaternion.identity, GetComponent<Transform>());
+                temp_pos = temp[i-1].GetComponent<RectTransform>().localPosition;
+            temp[i] = Instantiate(levels, temp_pos + getRandomPos(size*2), Quaternion.identity, GetComponent<Transform>());
             temp[i].GetComponent<BoxCollider2D>().size = temp[i].GetComponent<RectTransform>().sizeDelta = getRandomSize(size);
             temp[i].name = "ID " + i.ToString();
         }
+        StartCoroutine(map());
     }
 
-    // Update is called once per frame
+    IEnumerator map()
+    {
+        yield return new WaitForSeconds(15f);
+        Debug.Log("map");
+    }
+
+    void FixedUpdate()
+    {
+
+    }
+
     void Update()
     {
         if (Input.GetKey(KeyCode.Escape) && !isclick)
@@ -39,7 +51,15 @@ public class Maps : MonoBehaviour
             isclick = false;
             Start();
         }
-                 
+        if (Input.GetKey(KeyCode.T))
+        {
+            for (int i = 0; i < count; i++)
+            {
+                Debug.Log(temp[i].name);
+                Debug.Log(temp[i].GetComponent<RectTransform>().position);
+            }        
+        }
+
     }
 
     public Vector2 getRandomSize(float size)
