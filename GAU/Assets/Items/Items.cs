@@ -24,7 +24,7 @@ namespace Assets.Scrits
         public void Start()
         {
             XDocument xDoc = XDocument.Load(Global.path);
-            foreach (XElement xe in xDoc.Element("Items").Elements("item"))
+            foreach (XElement xe in xDoc.Element("Items").Elements())
                 if (xe.Attribute("id") != null)
                     if (id == Convert.ToInt32(xe.Attribute("id").Value))
                     {
@@ -41,29 +41,7 @@ namespace Assets.Scrits
                         description = xe.Element("description").Value;
                     }
         }
-
-        public void Save(int id_item=-1)
-        {/*
-            XmlDocument xmld = new XmlDocument();
-            xmld.LoadXml(items_xml.text);
-            XmlElement xmle = xmld.DocumentElement;
-            foreach (XmlNode xnode in xmle)
-                if (xnode.Attributes.Count > 0 && xnode.Attributes.GetNamedItem("Items") != null)
-                    if (id == Convert.ToInt32(xnode.Attributes.GetNamedItem("Items").Value))
-                    {
-                        item_name = xnode["name"].InnerText.Trim();
-                        type = xnode["type"].InnerText.Trim();
-                        fiz_at = Convert.ToInt32(xnode["fiz_at"].InnerText.Trim());
-                        fiz_def = Convert.ToInt32(xnode["fiz_def"].InnerText.Trim());
-                        mag_at = Convert.ToInt32(xnode["mag_at"].InnerText.Trim());
-                        mag_def = Convert.ToInt32(xnode["mag_def"].InnerText.Trim());
-                        accuracy = Convert.ToInt32(xnode["accuracy"].InnerText.Trim());
-                        evasion = Convert.ToInt32(xnode["evasion"].InnerText.Trim());
-                        speed = Convert.ToInt32(xnode["speed"].InnerText.Trim());
-                        isMelee = Convert.ToBoolean(xnode["isMelee"].InnerText.Trim());
-                        description = xnode["description"].InnerText.Trim();
-                    }*/
-        }
+       
     }
 }
 

@@ -5,26 +5,26 @@ using UnityEngine.UI;
 
 public class Maps : MonoBehaviour
 {
-    public GameObject levels;
+    public GameObject levels, doors;
 
     public int count = 0;
     public int size = 100;
     bool isclick = false;
-    GameObject[] temp;
-
+    public List<GameObject> level;
+    
     void Start()
     {
-        temp = new GameObject[count];
-        for (int i = 0; i < count; i++)
+        int i = 0;
+        int way=-2;
+        while (i < count - 1)
         {
-            Vector3 temp_pos = new Vector3(0,0);
-            if (i!=0)
-                temp_pos = temp[i-1].GetComponent<RectTransform>().localPosition;
-            temp[i] = Instantiate(levels, temp_pos + getRandomPos(size*2), Quaternion.identity, GetComponent<Transform>());
-            temp[i].GetComponent<BoxCollider2D>().size = temp[i].GetComponent<RectTransform>().sizeDelta = getRandomSize(size);
-            temp[i].name = "ID " + i.ToString();
+            if (i == 0)
+                add_level(i,out way);
+            add_door(level[i],way, out string str, out int pos_x, out int pos_y);
+            i += 1;
+            add_level(i, out way, str, pos_x, pos_y);
         }
-        StartCoroutine(map());
+        StartCoroutine(map());          
     }
 
     IEnumerator map()
@@ -33,9 +33,70 @@ public class Maps : MonoBehaviour
         Debug.Log("map");
     }
 
-    void FixedUpdate()
+    void add_level(int i, out int way, string str = "", int pos_x = 1, int pos_y = 1)
     {
+        way = -2;
+        Vector3 temp_pos = new Vector3(0, 0);
+        Vector2 temp_size = getRandomSize(size);
+        if (i != 0)
+        {
+            temp_pos = level[i - 1].GetComponent<RectTransform>().localPosition +
+                new Vector3(pos_x * (level[i - 1].GetComponent<RectTransform>().sizeDelta.x + temp_size.x + 20),
+                pos_y * (level[i - 1].GetComponent<RectTransform>().sizeDelta.y + temp_size.y + 20)) / 2;
+        }
+        if (pos_y == 0 && pos_x == -1)
+            way = -1;
+        else if (pos_y == 1 && pos_x == 0)
+            way = 0;
+        else if (pos_y == 0 && pos_x == 1)
+            way = 1;
+        GameObject temp = Instantiate(levels, temp_pos, Quaternion.identity, GetComponent<Transform>());
+        temp.GetComponent<BoxCollider2D>().size = temp.GetComponent<RectTransform>().sizeDelta = temp_size;
+        temp.name = str + "ID " + i.ToString();
+        level.Add(temp);
+    }
 
+    void add_door(GameObject level, int way, out string str, out int pos_x, out int pos_y)
+    {
+        Debug.Log(level.name + "Way= " + way);
+        pos_y = pos_x = 0;
+        str = level.name;
+        var temp = Random.Range(-1, 2);
+        var isLoop= true;
+
+        while (isLoop)
+            if ((way == -1 && temp == 1) || (way == 1 && temp == -1))
+            {
+                temp = Random.Range(-1, 2);
+                Debug.Log(level.name + "Temp= " + temp);
+            }
+            else
+                isLoop = false;
+
+        switch (temp)
+        {
+            case -1:
+                pos_y = 0;
+                pos_x = -1;
+                str += " L ";
+                break;
+            case 0:
+                pos_y = 1;
+                pos_x = 0;
+                str += " T ";
+                break;
+            case 1:
+                pos_y = 0;
+                pos_x = 1;
+                str += " R ";
+                break;
+            default:
+                Debug.Log("Error");
+                break;
+        }
+        var pos_door = new Vector3(level.GetComponent<RectTransform>().localPosition.x + pos_x * (level.GetComponent<RectTransform>().sizeDelta.x / 2 - 50),
+                    level.GetComponent<RectTransform>().localPosition.y + pos_y * (level.GetComponent<RectTransform>().sizeDelta.y / 2 - 50));
+        Instantiate(doors, pos_door, Quaternion.identity, level.GetComponent<Transform>()).name = str;
     }
 
     void Update()
@@ -55,8 +116,7 @@ public class Maps : MonoBehaviour
         {
             for (int i = 0; i < count; i++)
             {
-                Debug.Log(temp[i].name);
-                Debug.Log(temp[i].GetComponent<RectTransform>().position);
+                Debug.Log(level[i].name + "|" + level[i].GetComponent<RectTransform>().position + "|" + level[i].GetComponent<RectTransform>().rotation);
             }        
         }
 
@@ -79,8 +139,11 @@ public class Maps : MonoBehaviour
     public void Delete()
     {
         foreach (var go in GameObject.FindGameObjectsWithTag("Level"))
-            if(go.layer==LayerMask.NameToLayer("Level"))
-        Destroy(go);
+            if (go.layer == LayerMask.NameToLayer("Level"))
+            {
+                level.Remove(go);
+                Destroy(go);
+            }
 
     }
 }

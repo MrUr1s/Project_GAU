@@ -22,8 +22,7 @@ public class Hub : MonoBehaviour
     }
 
     void Start()
-    {
-        
+    {   
         target.position = player.position;
         step = col_step;
     }
@@ -36,6 +35,9 @@ public class Hub : MonoBehaviour
             {
                 float x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
                     y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
+                RaycastHit2D all_ray = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0));
+                Debug.Log(all_ray.collider);
+
                 RaycastHit2D Enemy = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Enemy"));
                 RaycastHit2D Game_window = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Game window"));
                 RaycastHit2D Level = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Level"));
@@ -55,10 +57,9 @@ public class Hub : MonoBehaviour
             if (step != 0 && !isMove && player.position != target.position)
             {
                 player.position = Vector3.MoveTowards(player.position, target.position, speed);
-                step--;
-                if (step == 0 || player.position == target.position)
-                    isMove = true;
+                step--;               
             }
+            else isMove = true;
         }
     }
 
@@ -76,8 +77,6 @@ public class Hub : MonoBehaviour
                 StartCoroutine(hit(enemy_go, "Defense"));
         else
             StartCoroutine(hit(enemy_go, "Evasion"));
-
-
         if (enemy.hp <= 0)
             kill(enemy_go);
     }

@@ -60,10 +60,10 @@
      <Compile Include="Assets\Lang\Lang.cs" />
      <Compile Include="Assets\Level\Maps.cs" />
      <Compile Include="Assets\Scrits\Characteristic.cs" />
-     <Compile Include="Assets\Scrits\Collision_level.cs" />
      <Compile Include="Assets\Scrits\create_GG.cs" />
      <Compile Include="Assets\Scrits\Global.cs" />
      <Compile Include="Assets\Scrits\Hub.cs" />
+     <Compile Include="Assets\Scrits\Level.cs" />
      <Compile Include="Assets\Scrits\main.cs" />
      <Compile Include="Assets\Scrits\passive.cs" />
      <Compile Include="Assets\Scrits\Player_sc.cs" />
