@@ -54,16 +54,17 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Characters\Character.cs" />
-     <Compile Include="Assets\Enemy.cs" />
      <Compile Include="Assets\Items\Invetory_panel_create.cs" />
      <Compile Include="Assets\Items\Items.cs" />
      <Compile Include="Assets\Lang\Lang.cs" />
+     <Compile Include="Assets\Level\Door.cs" />
+     <Compile Include="Assets\Level\Level.cs" />
      <Compile Include="Assets\Level\Maps.cs" />
      <Compile Include="Assets\Scrits\Characteristic.cs" />
      <Compile Include="Assets\Scrits\create_GG.cs" />
+     <Compile Include="Assets\Scrits\Enemy.cs" />
      <Compile Include="Assets\Scrits\Global.cs" />
      <Compile Include="Assets\Scrits\Hub.cs" />
-     <Compile Include="Assets\Scrits\Level.cs" />
      <Compile Include="Assets\Scrits\main.cs" />
      <Compile Include="Assets\Scrits\passive.cs" />
      <Compile Include="Assets\Scrits\Player_sc.cs" />

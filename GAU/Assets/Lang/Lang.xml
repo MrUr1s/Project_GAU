@@ -34,6 +34,11 @@
     <rus key="Evasion" text="Уклонение"/>
     <rus key="Speed" text="Скорость"/>
     <rus key="isMelee" text="Ближний бой"/>
+    
+    <rus key="Run" text="Ход"/>
+    <rus key="Characteristic" text="Характеристики"/>
+    <rus key="Col_step" text="Количество ходов:"/>
+    
   </language>
 	
 	<language lang="En">

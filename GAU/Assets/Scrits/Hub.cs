@@ -8,6 +8,7 @@ public class Hub : MonoBehaviour
 {
 
     public GameObject character_window, invetory;
+    public Text col_step_text;
     public Transform player, target;
     public Transform evasion, defense;
     public float speed = 5f;
@@ -25,6 +26,7 @@ public class Hub : MonoBehaviour
     {   
         target.position = player.position;
         step = col_step;
+        col_step_text.text = step.ToString();
     }
 
     void Update()
@@ -44,7 +46,10 @@ public class Hub : MonoBehaviour
                 RaycastHit2D Item_ray = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Items"));
                 if (Enemy.collider == null && Game_window.collider != null && Level.collider != null && Item_ray.collider == null)
                     if ((Game_window.collider.tag == "Game window") && (Level.collider.tag == "Level"))
+                    {
                         target.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
+                        Debug.Log(Level.collider.name);
+                    }
 
                 if (Item_ray.collider != null)
                     if (Item_ray.collider.tag == "Items")
@@ -60,6 +65,7 @@ public class Hub : MonoBehaviour
                 step--;               
             }
             else isMove = true;
+            col_step_text.text = step.ToString();
         }
     }
 
@@ -127,6 +133,7 @@ public class Hub : MonoBehaviour
             if (step == 0)
                 step = col_step;
             isMove = false;
+            
         }
     }
 
