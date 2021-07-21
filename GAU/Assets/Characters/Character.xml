@@ -1,0 +1,27 @@
+<Data>
+	<Character Character="Character">
+    
+    <Attributes Attributes="attribute">
+      <Attribute rase = "rase1"/>
+      <Attribute clas = "clas"/>
+      <Attribute fiz_at = "0"/>
+      <Attribute fiz_def = "0"/>
+      <Attribute mag_at = "0"/>
+      <Attribute mag_def = "0"/>
+      <Attribute accuracy = "0"/>
+      <Attribute evasion = "0"/>
+      <Attribute speed = "0"/>
+      <Attribute isMelee = "false"/>
+    </Attributes>
+    
+    <Items Items="item">
+      <Item Armor="Armor_name"/>
+      <Item Weapon="Weapon_name"/>
+    </Items>
+    
+    <Skills Skills="skill">
+      <Skill Skill="test3" value="Выйти"/>
+    </Skills>
+    
+	</Character>
+</Data>
