@@ -41,7 +41,7 @@ namespace Assets.Scrits
                     xDoc.Save(path);
                     Debug.Log("1");
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     XDocument xDoc = new XDocument(new XElement("Items", ""));
                     xDoc.Save(path);
