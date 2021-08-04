@@ -2,7 +2,20 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Xml.Linq;
+using System.Collections.Generic;
 
+namespace Assets.Scrits
+{
+    public static class Map
+    {
+        public static int[,] map;
+        public static void Create(int x, int y)
+        {
+            map = new int[x, y];
+        }
+
+    }
+}
 
 public class Hub : MonoBehaviour
 {
@@ -24,7 +37,7 @@ public class Hub : MonoBehaviour
 
     void Start()
     {   
-        target.position = player.position;
+        //target.position = player.position;
         step = col_step;
         col_step_text.text = step.ToString();
     }
@@ -35,38 +48,28 @@ public class Hub : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0) && isMove)
             {
-                float x = Camera.main.ScreenToWorldPoint(Input.mousePosition).x,
-                    y = Camera.main.ScreenToWorldPoint(Input.mousePosition).y;
-                RaycastHit2D all_ray = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0));
-                Debug.Log(all_ray.collider);
-
-                RaycastHit2D Enemy = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Enemy"));
-                RaycastHit2D Game_window = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Game window"));
-                RaycastHit2D Level = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Level"));
-                RaycastHit2D Item_ray = Physics2D.Raycast(new Vector2(x, y), new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Items"));
-                if (Enemy.collider == null && Game_window.collider != null && Level.collider != null && Item_ray.collider == null)
-                    if ((Game_window.collider.tag == "Game window") && (Level.collider.tag == "Level"))
-                    {
-                        target.position = new Vector3(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, Camera.main.ScreenToWorldPoint(Input.mousePosition).y, 0);
-                        Debug.Log(Level.collider.name);
-                    }
-
-                if (Item_ray.collider != null)
-                    if (Item_ray.collider.tag == "Items")
-                        add_item(Item_ray.collider.gameObject);
-
-                if (Enemy.collider != null)
-                    if (Enemy.collider.tag == "Enemy")
-                        Fight(Enemy.collider.gameObject);
+            
             }
             if (step != 0 && !isMove && player.position != target.position)
             {
                 player.position = Vector3.MoveTowards(player.position, target.position, speed);
-                step--;               
+                step--;
             }
             else isMove = true;
             col_step_text.text = step.ToString();
         }
+    }
+    int[,] map(Vector3 player, Vector3 target)
+    {
+        
+        return null;
+    }
+    Vector3 Move(Vector3 player,Vector3 target,int speed)
+    {
+        RaycastHit2D player_map = Physics2D.Raycast((Vector2)player, new Vector2(0, 0), 1000, 1 << LayerMask.NameToLayer("Level"));
+        Assets.Scrits.Maps maps = new Assets.Scrits.Maps();
+        
+        return new Vector3();
     }
 
     void Fight(GameObject enemy_go)

@@ -3,140 +3,131 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Maps : MonoBehaviour
+namespace Assets.Scrits
 {
-    public GameObject levels, doors;
-
-    public int count = 0;
-    public int size = 100;
-    bool isclick = false;
-    public List<GameObject> level;
-    
-    void Start()
+    public class Maps : MonoBehaviour
     {
-        int i = 0;
-        int way=-2;
-        while (i < count)
+        public GameObject levels, H_Wall,V_Wall;
+        
+        [System.Serializable]
+        public struct Size
         {
-            if (i == 0)
-                add_level(i,out way);
-            add_door(level[i],way, ref i, out int pos_x, out int pos_y);
-            if(i!=count)
-            add_level(i, out way,  pos_x, pos_y);
+            public int x;
+            public int y;
         }
-        StartCoroutine(map());          
-    }
+        private int x;
+        private int y;
+        public Size size;
+        Vector2 level_size;
+        bool isclick = false;
 
-    IEnumerator map()
-    {
-        yield return new WaitForSeconds(15f);
-        Debug.Log("map");
-    }
-
-    void add_level(int i, out int way, int pos_x = 1, int pos_y = 1)
-    {
-        way = -2;
-        Vector3 temp_pos = new Vector3(0, 0);
-        Vector2 temp_size = getRandomSize(size);
-        if (i != 0)
-        {
-            temp_pos = level[i - 1].GetComponent<RectTransform>().localPosition +
-                new Vector3(pos_x * (level[i - 1].GetComponent<RectTransform>().sizeDelta.x + temp_size.x + 20),
-                pos_y * (level[i - 1].GetComponent<RectTransform>().sizeDelta.y + temp_size.y + 20)) / 2;
-        }
-        if (pos_y == 0 && pos_x == -1)
-            way = -1;
-        else if (pos_y == 1 && pos_x == 0)
-            way = 0;
-        else if (pos_y == 0 && pos_x == 1)
-            way = 1;
-        GameObject temp = Instantiate(levels, temp_pos, Quaternion.identity, GetComponent<Transform>());
-        temp.GetComponent<BoxCollider2D>().size = temp.GetComponent<RectTransform>().sizeDelta = temp_size;
-        temp.name = i.ToString(); 
-        level.Add(temp);
-    }
-
-    void add_door(GameObject level, int way,ref int i, out int pos_x, out int pos_y)
-    {
-        i += 1;
-        pos_y = pos_x = 0;
-        var temp = Random.Range(-1, 2);
-        var isLoop= true;
-
-        while (isLoop)
-            if ((way == -1 && temp == 1) || (way == 1 && temp == -1))
-                temp = Random.Range(-1, 2);
-            else
-                isLoop = false;
-
-        switch (temp)
-        {
-            case -1:
-                pos_y = 0;
-                pos_x = -1;
-                break;
-            case 0:
-                pos_y = 1;
-                pos_x = 0;
-                break;
-            case 1:
-                pos_y = 0;
-                pos_x = 1;
-                break;
-            default:
-                Debug.Log("Error");
-                break;
-        }
-        var pos_door = new Vector3(level.GetComponent<RectTransform>().localPosition.x + pos_x * (level.GetComponent<RectTransform>().sizeDelta.x / 2 - 50),
-                    level.GetComponent<RectTransform>().localPosition.y + pos_y * (level.GetComponent<RectTransform>().sizeDelta.y / 2 - 50));
-        Instantiate(doors, pos_door, Quaternion.identity, level.GetComponent<Transform>()).name =i.ToString();
-    }
-
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape) && !isclick)
-        {
-            isclick = true;
-            Delete();
+        [ContextMenu("Start")]
+        void Start()
+        {            
+            level_size = levels.GetComponent<Renderer>().bounds.size;
+            x = y = 0;
+            Square();         
         }
 
-        if (Input.GetKey(KeyCode.R)&&isclick)
+        void Square()
         {
-            isclick = false;
-            Start();
+            Map.Create(size.x, size.y);
+            for (; x < size.x; x++)                 
+                for (y = 0 ; y < size.y; y++)
+                {
+                    var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
+                        Quaternion.identity, this.gameObject.transform);
+                    Algoritm(x, y, (byte)Random.Range(1,4));
+                    lev.name = x + " " + y;
+                }            
         }
-        if (Input.GetKey(KeyCode.T))
+        void Algoritm(int x,int y,byte rnd)
         {
-            for (int i = 0; i < count; i++)
+            switch (rnd)
             {
-                Debug.Log(level[i].name + "|" + level[i].GetComponent<RectTransform>().position + "|" + level[i].GetComponent<RectTransform>().rotation);
-            }        
+                case 1:
+                    Instantiate(H_Wall, new Vector3(x * level_size.x, y * level_size.y - level_size.y / 2, 1),
+                                Quaternion.identity, this.gameObject.transform);
+                    break;
+                case 2:
+                    Instantiate(V_Wall, new Vector3(x * level_size.x - level_size.x / 2, y * level_size.y, 1),
+                                Quaternion.identity, this.gameObject.transform);                    
+                    break;
+                case 3:
+                    Instantiate(H_Wall, new Vector3(x * level_size.x, y * level_size.y + level_size.y / 2, 1),
+                                Quaternion.identity, this.gameObject.transform);
+                    break;
+                case 4:
+                    Instantiate(V_Wall, new Vector3(x * level_size.x - level_size.x / 2, y * level_size.y, 1),
+                             Quaternion.identity, this.gameObject.transform);
+                    break;
+            }           
+            Map.map[x, y] = rnd;
         }
-
-    }
-
-    public Vector2 getRandomSize(float size)
-    {
-        float x = Random.Range(5, 10);
-        float y = Random.Range(5, 10);
-        return new Vector2(size * x, size * y);
-    }
-
-    public Vector3 getRandomPos(float radius)
-    {
-        float x = radius * Mathf.Cos(Random.Range(-Mathf.PI, Mathf.PI));
-        float y = radius * Mathf.Sin(Random.Range(-Mathf.PI, Mathf.PI));        
-        return new Vector3(x, y, 0);
-    }
-
-    public void Delete()
-    {
-        foreach (var go in GameObject.FindGameObjectsWithTag("Level"))
-            if (go.layer == LayerMask.NameToLayer("Level"))
+        void f(int l)
+        {
+            int temp_x;
+                int temp_y;
+            switch (l)
             {
-                level.Remove(go);
-                Destroy(go);
+                case 1:
+                    y -= Random.Range(1, 3);
+                    temp_x = x;
+                    temp_y = y;
+                    for (; x < temp_x + 3; x++)
+                    {
+                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
+                            Quaternion.identity, this.gameObject.transform);
+                        lev.name = x + " " + y;
+                    }
+                    for (; y < temp_y + 3; y++)
+                    {
+                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
+                            Quaternion.identity, this.gameObject.transform);
+                        lev.name = x + " " + y;
+                    }
+                    break;
+                case 2:
+                    y -= Random.Range(1, 3);
+                    temp_x = x;
+                    temp_y = y;
+                    for (; x < temp_x + 3; x++)
+                    {
+                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
+                            Quaternion.identity, this.gameObject.transform);
+                        lev.name = x + " " + y;
+                    }
+                    for (; y < temp_y + 3; y++)
+                    {
+                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
+                            Quaternion.identity, this.gameObject.transform);
+                        lev.name = x + " " + y;
+                    }
+                    break;
+            }
+        }
+        void Update()
+        {
+            if (Input.GetKey(KeyCode.Escape) && !isclick)
+            {
+                isclick = true;
+                Delete();
             }
 
+            if (Input.GetKey(KeyCode.R) && isclick)
+            {
+                isclick = false;
+                Start();
+            }
+
+        }
+        public void Delete()
+        {
+            foreach (var go in GameObject.FindGameObjectsWithTag("Level"))
+                if (go.layer == LayerMask.NameToLayer("Level"))
+                {
+                    Destroy(go);
+                }
+        }
     }
 }

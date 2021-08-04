@@ -7,29 +7,39 @@ namespace Assets.Scrits
 {
     public class Level : MonoBehaviour
     {
-        public GameObject lev_pos;
-        public List<GameObject> _lev_pos;
+        // public RectTransform target;
+
+        private bool flag = false;
+        private bool selected = false;
+        public GameObject GO = null;
+        [ContextMenu("Start")]
         void Start()
         {
-            for (int x = 0; x < GetComponent<RectTransform>().sizeDelta.x; x += 100)
-                for (int y = 0; y < GetComponent<RectTransform>().sizeDelta.y; y += 100)
-                    _lev_pos.Add(Instantiate(lev_pos, GetComponent<RectTransform>().localPosition + new Vector3(x, y) - (Vector3)GetComponent<RectTransform>().sizeDelta / 2, Quaternion.identity, GetComponent<RectTransform>()));
-            if (name != "0") Active(false);
         }
-        void Active(bool _bool)
+        private void OnMouseDown()
         {
-            foreach (GameObject temp in _lev_pos)
+            if (flag)
             {
-                temp.gameObject.SetActive(_bool);
+                selected = false;
+                this.GetComponent<MeshRenderer>().materials[0].color = new Color(1, 1, 1);
             }
+            else
+            {
+                this.GetComponent<MeshRenderer>().materials[0].color = new Color(255, 0, 0);
+                selected = true;
+            }
+            Debug.Log(this.name.Split(' ')[0]+"|"+this.name.Split(' ')[1]);
+            flag = !flag;
         }
-        void OnTriggerEnter2D(Collider2D other)
+        void OnTriggerEnter(Collider other)
         {
-            Active(true);
+            GO = other.gameObject;
         }
-        void OnTriggerExit2D(Collider2D other)
+        void OnTriggerExit(Collider other)
         {
-            Active(false);
+
+            GO = null;
         }
+
     }
 }
