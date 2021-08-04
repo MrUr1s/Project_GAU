@@ -130,7 +130,7 @@ namespace Assets.Scrits
             accuracy = PlayerPrefs.GetInt("accuracy");
             evasion = PlayerPrefs.GetInt("evasion");
             speed = PlayerPrefs.GetInt("speed");
-            isMelee = Convert.ToBoolean(PlayerPrefs.GetString("isMelee"));
+           // isMelee = Convert.ToBoolean(PlayerPrefs.GetString("isMelee"));
         }
 
         public void Save()

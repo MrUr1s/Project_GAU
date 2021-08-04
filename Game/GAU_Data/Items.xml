@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Items>
+  <item id="1">
+    <name>name</name>
+    <type>type</type>
+    <fiz_at>11</fiz_at>
+    <fiz_def>12</fiz_def>
+    <mag_at>13</mag_at>
+    <mag_def>14</mag_def>
+    <accuracy>15</accuracy>
+    <evasion>16</evasion>
+    <speed>17</speed>
+    <isMelee>False</isMelee>
+    <description>description</description>
+  </item>
+  <item id="0">
+    <name>name1</name>
+    <type>type1</type>
+    <fiz_at>21</fiz_at>
+    <fiz_def>22</fiz_def>
+    <mag_at>23</mag_at>
+    <mag_def>24</mag_def>
+    <accuracy>25</accuracy>
+    <evasion>26</evasion>
+    <speed>27</speed>
+    <isMelee>true</isMelee>
+    <description>description1</description>
+  </item>
+</Items>
