@@ -7,105 +7,78 @@ namespace Assets.Scrits
 {
     public class Maps : MonoBehaviour
     {
-        public GameObject levels, H_Wall,V_Wall;
-        
+        public GameObject levels, H_Wall;
+
         [System.Serializable]
         public struct Size
         {
             public int x;
             public int y;
         }
+        public float placehold=.1f;
         private int x;
         private int y;
         public Size size;
         Vector2 level_size;
         bool isclick = false;
-
+        bool b = true;
+        Vector3 pos;
         [ContextMenu("Start")]
         void Start()
-        {            
+        {
+            pos = this.transform.position; 
             level_size = levels.GetComponent<Renderer>().bounds.size;
             x = y = 0;
-            Square();         
+            Square();
         }
 
         void Square()
-        {
+        {            
             Map.Create(size.x, size.y);
-            for (; x < size.x; x++)                 
-                for (y = 0 ; y < size.y; y++)
+            for (; x < size.x; x++)
+                for (y = 0; y < size.y; y++)
                 {
-                    var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
+                    var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1)+pos,
                         Quaternion.identity, this.gameObject.transform);
-                    Algoritm(x, y, (byte)Random.Range(1,4));
                     lev.name = x + " " + y;
-                }            
+                    Map.map[x,y] = lev.GetComponent<Level>();
+                    Map.map[x, y].x = x;
+                    Map.map[x, y].y = y;
+                }
+            Wall(ref Map.map);
         }
-        void Algoritm(int x,int y,byte rnd)
+
+        void Wall(ref Level[,] map)
         {
-            switch (rnd)
-            {
-                case 1:
-                    Instantiate(H_Wall, new Vector3(x * level_size.x, y * level_size.y - level_size.y / 2, 1),
-                                Quaternion.identity, this.gameObject.transform);
-                    break;
-                case 2:
-                    Instantiate(V_Wall, new Vector3(x * level_size.x - level_size.x / 2, y * level_size.y, 1),
-                                Quaternion.identity, this.gameObject.transform);                    
-                    break;
-                case 3:
-                    Instantiate(H_Wall, new Vector3(x * level_size.x, y * level_size.y + level_size.y / 2, 1),
-                                Quaternion.identity, this.gameObject.transform);
-                    break;
-                case 4:
-                    Instantiate(V_Wall, new Vector3(x * level_size.x - level_size.x / 2, y * level_size.y, 1),
-                             Quaternion.identity, this.gameObject.transform);
-                    break;
-            }           
-            Map.map[x, y] = rnd;
+            for (int y = 0; y <= size.y-1; y++)
+                for (int x = 0; x <= size.x-1; x++)
+                {
+                    if (y == 0 || x == 0 || x == size.x-1 || y == size.y-1)
+                        map[x, y].GO = H_Wall;
+                    else
+                    {
+                        if ((x % 2 == 0) && (y % 2 == 0))
+                            if (Random.value > placehold)
+                            {
+                                map[x, y].GO = H_Wall;
+                                int a = Random.value < .5 ? 0 : (Random.value < .5 ? -1 : 1);
+                                int b = a != 0 ? 0 : (Random.value < .5 ? -1 : 1);
+                                map[x + a, y + b].GO = H_Wall;
+                            }
+                    }
+                   
+                }
+            for (int y=0;y<size.y;y++)
+                for (int x=0;x<size.x; x++)
+                    if (map[x, y].GO == H_Wall)
+                    {
+                        Instantiate(H_Wall, new Vector3(x * level_size.x, y * level_size.y, 1) + pos,
+                                    Quaternion.identity, this.gameObject.transform);
+
+                       // Debug.Log(x + " " + y);
+                    }
         }
-        void f(int l)
-        {
-            int temp_x;
-                int temp_y;
-            switch (l)
-            {
-                case 1:
-                    y -= Random.Range(1, 3);
-                    temp_x = x;
-                    temp_y = y;
-                    for (; x < temp_x + 3; x++)
-                    {
-                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
-                            Quaternion.identity, this.gameObject.transform);
-                        lev.name = x + " " + y;
-                    }
-                    for (; y < temp_y + 3; y++)
-                    {
-                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
-                            Quaternion.identity, this.gameObject.transform);
-                        lev.name = x + " " + y;
-                    }
-                    break;
-                case 2:
-                    y -= Random.Range(1, 3);
-                    temp_x = x;
-                    temp_y = y;
-                    for (; x < temp_x + 3; x++)
-                    {
-                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
-                            Quaternion.identity, this.gameObject.transform);
-                        lev.name = x + " " + y;
-                    }
-                    for (; y < temp_y + 3; y++)
-                    {
-                        var lev = Instantiate(levels, new Vector3(x * level_size.x, y * level_size.y, 1),
-                            Quaternion.identity, this.gameObject.transform);
-                        lev.name = x + " " + y;
-                    }
-                    break;
-            }
-        }
+
         void Update()
         {
             if (Input.GetKey(KeyCode.Escape) && !isclick)
