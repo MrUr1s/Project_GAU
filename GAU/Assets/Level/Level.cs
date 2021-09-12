@@ -37,6 +37,10 @@ namespace Assets.Scrits
                     Hub.target.x = x;
                     Hub.target.y = y;
                 }
+                else
+                {
+                    Hub.target.x = Hub.target.y = null;
+                }
                 Unselected();
             }
         }

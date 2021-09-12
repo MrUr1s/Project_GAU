@@ -22,8 +22,8 @@ namespace Assets.Scrits
         [System.Serializable]
         public struct Target
         {
-            public int x;
-            public int y;            
+            public int? x;
+            public int? y;            
         }
         [SerializeField]
         public static Target target;
@@ -54,14 +54,18 @@ namespace Assets.Scrits
         {
             if (isGame)
             {
-                if (Input.GetMouseButtonDown(0))
-                    isMove = !isMove;
-                if (isMove)
+                if (target.x != null && target.y != null)
                 {
-                        Move(player.GetComponent<Player_sc>().Move(target.x, target.y), ref player.GetComponent<Player_sc>()._pos.x,
-                           ref player.GetComponent<Player_sc>()._pos.y, target.x, target.y);
+                    int x = target.x.GetValueOrDefault(), y = target.y.GetValueOrDefault();
+                    if (Input.GetKey(KeyCode.Space))
+                        isMove = !isMove;
+                    if (isMove)
+                    {
+                        Move(player.GetComponent<Player_sc>().Move(x, y), ref player.GetComponent<Player_sc>()._pos.x,
+                           ref player.GetComponent<Player_sc>()._pos.y, x, y);
 
 
+                    }
                 }
                 //if (step != 0 && !isMove && player.position != target.position)
                 //{
@@ -74,8 +78,6 @@ namespace Assets.Scrits
         }
         void Move(int[,] map, ref int curentposx, ref int curentposy, int targetposx, int targetposy)
         {
-            Debug.Log(curentposx != targetposx && curentposy != targetposy);
-
             if (curentposx != targetposx || curentposy != targetposy)
             {                
                 if (map[curentposx + 1, curentposy] == map[curentposx, curentposy] - 1)
