@@ -1,6 +1,6 @@
 ﻿<Character>
   <Attributes>
-    <rase>Human</rase>
+    <race>Human</race>
     <clas>Gunslinger</clas>
     <fiz_at>100</fiz_at>
     <fiz_def>40</fiz_def>

@@ -11,7 +11,7 @@ namespace Assets.Scrits
     {
         XmlDocument xmlDoc = new XmlDocument();
 
-        public string rase;
+        public string race;
         public string clas;
         public int fiz_at=0,
             fiz_def=0,
@@ -26,10 +26,10 @@ namespace Assets.Scrits
         {
             Load();
         }
-        public Character1(string rase, string clas)
+        public Character1(string race, string clas)
         {
             this.clas = clas;
-            this.rase = rase;
+            this.race = race;
             switch (clas)
             {
                 case "Berserk":
@@ -73,7 +73,7 @@ namespace Assets.Scrits
                     speed = 0;
                     break;
             }
-            switch (rase)
+            switch (race)
             {
                 case "Orc":
                     fiz_at += 40;
@@ -130,8 +130,8 @@ namespace Assets.Scrits
                         for (int i = 0; i < child.Attributes.Count; i++)
                             switch (child.Attributes[i].Name)
                             {
-                                case "rase":
-                                    rase = child.Attributes[i].Value;
+                                case "race":
+                                    race = child.Attributes[i].Value;
                                     break;
                                 case "clas":
                                     clas = child.Attributes[i].Value;

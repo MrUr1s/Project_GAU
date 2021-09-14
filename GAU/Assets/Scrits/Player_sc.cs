@@ -6,31 +6,27 @@ namespace Assets.Scrits
 {
     public class Player_sc : action_cs
     {
-        
-        
-        public string rase = "";
-        public string clas = "";
-        public int fiz_at = 0,
-            fiz_def = 0,
-            mag_at = 0,
-            mag_def = 0,
-            accuracy = 0,
-            evasion = 0,
-            speed = 0;
-        public bool isMelee = false;
+        public Player_sc(IHaracteristisc.Race race, IHaracteristisc.Class clas, int fiz_at, int fiz_def, int mag_at, int mag_def,
+            int accuracy, int evasion, int speed, int hp, int mp, bool isMelee) :
+            base(race, clas, fiz_at, fiz_def, mag_at, mag_def, accuracy, evasion, speed, hp, mp, isMelee)
+        {
+        }
+
         void Start()
         {
-            Character character = new Character();
-            rase = character.rase;
-            clas = character.clas;
-            fiz_at = character.fiz_at;
-            fiz_def = character.fiz_def;
-            mag_at = character.mag_at;
-            mag_def = character.mag_def;
-            accuracy = character.accuracy;
-            evasion = character.evasion;
-            speed = character.speed;
-            isMelee = character.isMelee;
+            //Character character = new Character();
+            //new Player_sc(
+            //race = character.race,
+            //clas = character.clas,
+            //fiz_at = character.fiz_at,
+            //fiz_def = character.fiz_def,
+            //mag_at = character.mag_at,
+            //mag_def = character.mag_def,
+            //accuracy = character.accuracy,
+            //evasion = character.evasion,
+            //speed = character.speed,
+            //isMelee = character.isMelee
+            //);
         }
 
         void Update()

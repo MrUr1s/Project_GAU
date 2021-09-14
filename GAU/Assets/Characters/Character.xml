@@ -2,7 +2,7 @@
 	<Character Character="Character">
     
     <Attributes Attributes="attribute">
-      <Attribute rase = "rase1"/>
+      <Attribute race = "race1"/>
       <Attribute clas = "clas"/>
       <Attribute fiz_at = "0"/>
       <Attribute fiz_def = "0"/>

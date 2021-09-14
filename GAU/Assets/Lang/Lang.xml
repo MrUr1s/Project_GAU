@@ -24,7 +24,7 @@
 		<rus key="Gunslinger" text="Стрелок"/>
     <rus key="Spiritmaster" text="Заклинатель"/>
     
-    <rus key="Rase" text="Раса"/>
+    <rus key="race" text="Раса"/>
     <rus key="Class" text="Класс"/>
     <rus key="Fiz_at" text="Физ. атака"/>
     <rus key="Fiz_def" text="Физ. защита"/>

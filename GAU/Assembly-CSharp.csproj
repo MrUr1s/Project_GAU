@@ -85,6 +85,7 @@
     <Compile Include="Assets\Characters\Character.cs" />
     <Compile Include="Assets\Scrits\smoothcamera.cs" />
     <Compile Include="Assets\Scrits\Character_changer_color.cs" />
+    <Compile Include="Assets\Scrits\IHaracteristisc.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Level\level.xml" />

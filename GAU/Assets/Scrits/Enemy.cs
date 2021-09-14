@@ -1,35 +1,35 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class Enemy : MonoBehaviour
+namespace Assets.Scrits
 {
-    public int hp = 100;
-    public int id=-1;
-    public int fiz_at = 0,
-           fiz_def = 0,
-           mag_at = 0,
-           mag_def = 0,
-           accuracy = 0,
-           evasion = 0,
-           speed = 0;
-    public bool isMelee = false;
-    public GameObject item;
-    public int count = 0;
-
-    void Start()
+    public class Enemy : action_cs
     {
-        if (id == -1)
-            id = Random.Range(1000000, 2000000);
-    }
+  
+        public int id = -1;
+        public GameObject item;
+        public int count = 0;
 
-    void OnDestroy()
-    {
-        for (int i = 0; i < count; i++)
+        public Enemy(IHaracteristisc.Race race, IHaracteristisc.Class clas, int fiz_at, int fiz_def, int mag_at, int mag_def,
+            int accuracy, int evasion, int speed, int hp, int mp, bool isMelee) :
+            base(race, clas, fiz_at, fiz_def, mag_at, mag_def, accuracy, evasion, speed, hp, mp, isMelee)
         {
-            item.GetComponent<Assets.Scrits.Items>();
-            Instantiate(item, GetComponentInParent<RectTransform>());
         }
-    }
 
+        void Start()
+        {
+            if (id == -1)
+                id = Random.Range(1000000, 2000000);
+        }
+
+        void OnDestroy()
+        {
+            for (int i = 0; i < count; i++)
+            {
+                item.GetComponent<Assets.Scrits.Items>();
+                Instantiate(item, GetComponentInParent<RectTransform>());
+            }
+        }
+
+    }
 }

@@ -12,7 +12,7 @@ namespace Assets.Scrits
         void Start()
         {
             character = new Character();
-            characteristics[0].GetComponent<Text>().text = character.rase;
+            characteristics[0].GetComponent<Text>().text = character.race;
             characteristics[1].GetComponent<Text>().text = character.clas;
             characteristics[2].GetComponent<Text>().text = character.fiz_at.ToString();
             characteristics[3].GetComponent<Text>().text = character.fiz_def.ToString();

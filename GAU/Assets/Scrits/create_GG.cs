@@ -21,7 +21,7 @@ public class create_GG : MonoBehaviour {
                 characters[y].SetActive(true);
         
     }
-    public void SelectRase(string race)
+    public void Selectrace(string race)
     {
         this.race = race;
         select_ch(race);
@@ -84,7 +84,7 @@ public class create_GG : MonoBehaviour {
         else
         {
             SceneManager.LoadScene(2);
-            Assets.Scrits.Global.character = new Assets.Scrits.Character(race, clas);
+            //Assets.Scrits.Global.character = new Assets.Scrits.Character(race, clas);
             
 
         }

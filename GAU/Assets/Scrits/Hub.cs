@@ -109,23 +109,7 @@ namespace Assets.Scrits
         }
 
         
-        void Fight(GameObject enemy_go)
-        {
-            Enemy enemy = enemy_go.GetComponent<Enemy>();
-            Assets.Scrits.Player_sc player = GameObject.FindGameObjectWithTag("Player").GetComponent<Assets.Scrits.Player_sc>();
-            if (player.accuracy - enemy.evasion > 0 || Random.Range(1, 100) == 1)
-                if (player.fiz_at - enemy.fiz_def > 0)
-                {
-                    enemy.hp -= player.fiz_at - enemy.fiz_def;
-                    StartCoroutine(hit(enemy_go, "Hit", enemy.fiz_def - player.fiz_at));
-                }
-                else
-                    StartCoroutine(hit(enemy_go, "Defense"));
-            else
-                StartCoroutine(hit(enemy_go, "Evasion"));
-            if (enemy.hp <= 0)
-                kill(enemy_go);
-        }
+       
 
         IEnumerator hit(GameObject enemy, string what, int hit = 0)
         {

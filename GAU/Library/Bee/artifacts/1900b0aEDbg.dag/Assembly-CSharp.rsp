@@ -349,6 +349,7 @@
 "Assets/Scrits/Global.cs"
 "Assets/Scrits/Hub.cs"
 "Assets/Scrits/IAttack.cs"
+"Assets/Scrits/IHaracteristisc.cs"
 "Assets/Scrits/item.cs"
 "Assets/Scrits/Lang1.cs"
 "Assets/Scrits/main.cs"

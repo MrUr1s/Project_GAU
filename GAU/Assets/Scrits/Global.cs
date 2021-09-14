@@ -14,7 +14,6 @@ namespace Assets.Scrits
         public bool isFirst = true;
         public static Character character;
 
-
         public static string file = "/Items.xml";
         public static string path;
         public static bool Android = false;

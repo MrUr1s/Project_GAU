@@ -10,7 +10,7 @@ namespace Assets.Scrits
 {
     class Character
     {
-        public string rase="";
+        public string race="";
         public string clas = "";
         public int fiz_at=0,
             fiz_def=0,
@@ -22,106 +22,106 @@ namespace Assets.Scrits
         public bool isMelee=false;
         public List<Items> item_p;
 
-        public Character()
-        {
-            Load();
-        }
+        //public Character()
+        //{
+        //    Load();
+        //}
         
-        public Character(string rase, string clas)
-        {
-            this.clas = clas;
-            this.rase = rase;
-            switch (clas)
-            {
-                case "Berserk":
-                    fiz_at += 120;
-                    fiz_def += 60;
-                    mag_at += 0;
-                    mag_def += 30;
-                    accuracy += 80;
-                    evasion += 30;
-                    speed = 0;
-                    isMelee = true;
-                    break;
+        //public Character(string race, string clas)
+        //{
+        //    this.clas = clas;
+        //    this.race = race;
+        //    switch (clas)
+        //    {
+        //        case "Berserk":
+        //            fiz_at += 120;
+        //            fiz_def += 60;
+        //            mag_at += 0;
+        //            mag_def += 30;
+        //            accuracy += 80;
+        //            evasion += 30;
+        //            speed = 0;
+        //            isMelee = true;
+        //            break;
 
-                case "Sorcerer":
-                    fiz_at += 40;
-                    fiz_def += 30;
-                    mag_at += 120;
-                    mag_def += 60;
-                    accuracy += 100;
-                    evasion += 30;
-                    speed = 0;
-                    break;
+        //        case "Sorcerer":
+        //            fiz_at += 40;
+        //            fiz_def += 30;
+        //            mag_at += 120;
+        //            mag_def += 60;
+        //            accuracy += 100;
+        //            evasion += 30;
+        //            speed = 0;
+        //            break;
 
-                case "Gunslinger":
-                    fiz_at += 100;
-                    fiz_def += 40;
-                    mag_at += 60;
-                    mag_def += 40;
-                    accuracy += 140;
-                    evasion += 60;
-                    speed = 0;
-                    break;
+        //        case "Gunslinger":
+        //            fiz_at += 100;
+        //            fiz_def += 40;
+        //            mag_at += 60;
+        //            mag_def += 40;
+        //            accuracy += 140;
+        //            evasion += 60;
+        //            speed = 0;
+        //            break;
 
-                case "Spiritmaster":
-                    fiz_at += 60;
-                    fiz_def += 70;
-                    mag_at += 40;
-                    mag_def += 60;
-                    accuracy += 60;
-                    evasion += 20;
-                    speed = 0;
-                    break;
-            }
-            switch (rase)
-            {
-                case "Orc":
-                    fiz_at += 40;
-                    fiz_def += 20;
-                    mag_at += 0;
-                    mag_def += 0;
-                    accuracy += -20;
-                    evasion += -20;
-                    speed = 0;
-                    isMelee = true;
-                    break;
+        //        case "Spiritmaster":
+        //            fiz_at += 60;
+        //            fiz_def += 70;
+        //            mag_at += 40;
+        //            mag_def += 60;
+        //            accuracy += 60;
+        //            evasion += 20;
+        //            speed = 0;
+        //            break;
+        //    }
+        //    switch (race)
+        //    {
+        //        case "Orc":
+        //            fiz_at += 40;
+        //            fiz_def += 20;
+        //            mag_at += 0;
+        //            mag_def += 0;
+        //            accuracy += -20;
+        //            evasion += -20;
+        //            speed = 0;
+        //            isMelee = true;
+        //            break;
 
-                case "Elf":
-                    fiz_at += -20;
-                    fiz_def += -20;
-                    mag_at += +30;
-                    mag_def += +30;
-                    accuracy += 0;
-                    evasion += 0;
-                    speed = 0;
-                    break;
+        //        case "Elf":
+        //            fiz_at += -20;
+        //            fiz_def += -20;
+        //            mag_at += +30;
+        //            mag_def += +30;
+        //            accuracy += 0;
+        //            evasion += 0;
+        //            speed = 0;
+        //            break;
 
-                case "Robot":
-                    fiz_at += +10;
-                    fiz_def += +10;
-                    mag_at += -30;
-                    mag_def += +10;
-                    accuracy += +40;
-                    evasion += +20;
-                    speed = 0;
-                    break;
+        //        case "Robot":
+        //            fiz_at += +10;
+        //            fiz_def += +10;
+        //            mag_at += -30;
+        //            mag_def += +10;
+        //            accuracy += +40;
+        //            evasion += +20;
+        //            speed = 0;
+        //            break;
 
-                case "Spiritmaster":
-                    fiz_at += -20;
-                    fiz_def += +20;
-                    mag_at += -20;
-                    mag_def += +20;
-                    accuracy += 0;
-                    evasion += 0;
-                    speed = 0;
-                    break;
-            }
-            Save();
-        }        
+        //        case "Spiritmaster":
+        //            fiz_at += -20;
+        //            fiz_def += +20;
+        //            mag_at += -20;
+        //            mag_def += +20;
+        //            accuracy += 0;
+        //            evasion += 0;
+        //            speed = 0;
+        //            break;
+        //    }
+        //    Save();
+        //}        
             public void Load()
         {
-            rase= PlayerPrefs.GetString("rase");
+            race= PlayerPrefs.GetString("race");
             clas = PlayerPrefs.GetString("clas");
             fiz_at = PlayerPrefs.GetInt("fiz_at");
             fiz_def = PlayerPrefs.GetInt("fiz_def");
@@ -135,7 +135,7 @@ namespace Assets.Scrits
 
         public void Save()
         {
-            PlayerPrefs.SetString("rase", rase);
+            PlayerPrefs.SetString("race", race);
             PlayerPrefs.SetString("clas", clas);
             PlayerPrefs.SetInt("fiz_at", fiz_at);
             PlayerPrefs.SetInt("fiz_def", fiz_def);
