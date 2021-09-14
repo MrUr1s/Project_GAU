@@ -146,17 +146,8 @@ namespace Assets.Scrits
                     mp += 0;
                     break;
 
-                case (IHaracteristisc.Race)3:
-                    fiz_at += -20;
-                    fiz_def += +20;
-                    mag_at += -20;
-                    mag_def += +20;
-                    accuracy += 0;
-                    evasion += 0;
-                    speed += 0;
-                    hp += 0;
-                    mp += 0;
-                    isMelee = true;
+                default:
+                    Debug.Log(race);
                     break;
             }
         }
