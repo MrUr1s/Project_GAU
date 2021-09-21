@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scrits
 {
-    public class action_cs : MonoBehaviour, IMove, IAttack,IHaracteristisc
+    public class action_cs : MonoBehaviour, IMove, IAttack, IHaracteristisc
     {
         public IHaracteristisc.Race race;
         public IHaracteristisc.Class clas;
@@ -16,9 +16,11 @@ namespace Assets.Scrits
             evasion = 0,
             speed = 0,
             hp = 0,
-            mp = 0;
-        public bool isMelee = false;   
+            mp = 0,
+            r = 5;
+        public bool isMelee = false;
 
+        public int map_step = 1;
         public IMove.Pos _pos;
 
         public action_cs(IHaracteristisc.Race race, IHaracteristisc.Class clas, int fiz_at, int fiz_def, int mag_at, int mag_def,
@@ -151,6 +153,7 @@ namespace Assets.Scrits
                     break;
             }
         }
+
         public int[,] Move_map()
         {
             int x = Map.map.GetUpperBound(0) + 1;
@@ -181,18 +184,51 @@ namespace Assets.Scrits
                 }
             return map;
         }
-        public int[,] Move(int targetx, int targety)
+        public Vector3 Move(int targetx, int targety, ref bool ismove)
         {
             int[,] map = Move_map();
             int x = _pos.x;
             int y = _pos.y;
+            map_step = 1;
 
-            int map_step = 1;
-            map[targetx, targety] = map_step;
-            Move_map(ref map, map_step, x, y);
-            return map;
+            Debug.Log(Map.map[targetx, targety].GO);
+            if (Map.map[targetx, targety].GO == null)
+                map[targetx, targety] = map_step;
+
+            if (Map.map[targetx, targety].GO != null && Map.map[targetx, targety].GO.name == "Player")
+                return Map.map[targetx, targety].GO.transform.position;
+            Move_map(ref map, x, y, ref ismove);
+            if (ismove)
+            {
+                if (x != targetx || y != targety)
+                {
+
+                    if (map[x + 1, y] == map[x, y] - 1)
+                    {
+                        x += 1;
+                        ismove = true;
+                    }
+                    if (map[x - 1, y] == map[x, y] - 1)
+                    {
+                        x -= 1;
+                        ismove = true;
+                    }
+                    if (map[x, y + 1] == map[x, y] - 1)
+                    {
+                        y += 1;
+                        ismove = true;
+                    }
+                    if (map[x, y - 1] == map[x, y] - 1)
+                    {
+                        y -= 1;
+                        ismove = true;
+                    }
+                }
+                else ismove = false;
+            }
+            return Map.map[x, y].GetComponent<Transform>().position;
         }
-        public void Move_map(ref int[,] map, int map_step, int x, int y)
+        public void Move_map(ref int[,] map, int x, int y, ref bool ismove)
         {
             int max_i = map.GetUpperBound(0) + 1;
             int max_j = map.GetUpperBound(1) + 1;
@@ -217,9 +253,13 @@ namespace Assets.Scrits
                         }
 
                 map_step += 1;
-                if (map[x, y] > 0 || map_step > max_i * max_j)
+                if (map[x, y] > 0)
                 {
                     move = false;
+                }
+                if (map_step > max_i * max_j)
+                {
+                    ismove = move = false;
                 }
 
             }
@@ -227,6 +267,7 @@ namespace Assets.Scrits
 
         public void hit_fiz(action_cs enemy)
         {
+            Debug.Log("АТАКА!!");
             if (this.accuracy - enemy.evasion > 0 || Random.Range(1, 100) == 1)
                 enemy.hp -= this.fiz_at - enemy.fiz_def;
             else
@@ -236,6 +277,7 @@ namespace Assets.Scrits
 
         public void hit_mag(action_cs enemy)
         {
+            Debug.Log("МАГ. АТАКА!!");
             if (this.accuracy - enemy.evasion > 0 || Random.Range(1, 100) == 1)
                 enemy.hp -= this.mag_at - enemy.mag_def;
             else
@@ -244,7 +286,125 @@ namespace Assets.Scrits
 
         public void defence(action_cs enemy)
         {
-            throw new System.NotImplementedException();
+            Debug.Log("Уворот");
+        }
+
+        public Vector3 Attack(action_cs enemy, ref bool ismove)
+        {
+            int x, y;
+            int targetx, targety;
+            int min = int.MaxValue;
+            if (isMelee)
+            {
+                targetx = x = enemy._pos.x;
+                targety = y = enemy._pos.y;
+                for (byte i = 0; i < 4; i++)
+                {
+                    bool move = true;
+                    switch (i)
+                    {
+                        case 0:
+                            Move(targetx + 1, targety, ref move);
+                            if (min > map_step)
+                            {
+                                min = map_step;
+                                x = targetx + 1;
+                                y = targety;
+                            }
+                            break;
+                        case 1:
+                            Move(targetx - 1, targety, ref move);
+                            if (min > map_step)
+                            {
+                                min = map_step;
+                                x = targetx - 1;
+                                y = targety;
+                            }
+                            break;
+                        case 2:
+                            Move(targetx, targety + 1, ref move);
+                            if (min > map_step)
+                            {
+                                min = map_step;
+                                x = targetx;
+                                y = targety + 1;
+                            }
+                            break;
+                        case 3:
+                            Move(targetx, targety - 1, ref move);
+                            if (min > map_step)
+                            {
+                                min = map_step;
+                                x = targetx;
+                                y = targety - 1;
+                            }
+                            break;
+                    }
+
+                }
+                Vector3 Vec_move = Move(x, y, ref ismove);
+                if (map_step <= 1)
+                    hit_fiz(enemy);
+                return Vec_move;
+            }
+            else
+            {
+                byte j = 1;
+                targetx = x = enemy._pos.x;
+                targety = y = enemy._pos.y;
+                for (byte i = 0; i < 4; i++)
+                    for (j = 1; j <= r; j++)
+                    {
+                        bool move = true;
+                        switch (i)
+                        {
+                            case 0:
+                                {
+                                    Move(targetx + j, targety, ref move);
+                                    if (min > map_step)
+                                    {
+                                        min = map_step;
+                                        x = targetx + j;
+                                        y = targety;
+                                    }
+                                }
+                                break;
+                            case 1:
+                                Move(targetx - j, targety, ref move);
+                                if (min > map_step)
+                                {
+                                    min = map_step;
+                                    x = targetx - j;
+                                    y = targety;
+                                }
+                                break;
+                            case 2:
+                                Move(targetx, targety + j, ref move);
+                                if (min > map_step)
+                                {
+                                    min = map_step;
+                                    x = targetx;
+                                    y = targety + j;
+                                }
+                                break;
+                            case 3:
+                                Move(targetx, targety - j, ref move);
+                                if (min > map_step)
+                                {
+                                    min = map_step;
+                                    x = targetx;
+                                    y = targety - j;
+                                }
+                                break;
+                        }
+
+                    }
+                Vector3 Vec_move = Move(x, y, ref ismove);
+                if (map_step <= r + 1)
+                    hit_mag(enemy);
+                return Vec_move;
+            }
+
         }
     }
 }

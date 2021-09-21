@@ -7,8 +7,7 @@ using UnityEngine.UI;
 namespace Assets.Scrits
 {
     public class Level : MonoBehaviour
-    {
-        private bool flag = false;
+    {       
         public bool selected = false;
         public GameObject GO = null;
         public int x;
@@ -18,35 +17,38 @@ namespace Assets.Scrits
         {
             if (selected)
             {
-                flag = true;
                 this.GetComponent<MeshRenderer>().materials[0].color = new Color(255, 0, 0);
             }
             else
             {
-                flag = false;
                 this.GetComponent<MeshRenderer>().materials[0].color = new Color(1, 1, 1);
             }
         }
         private void OnMouseDown()
         {
-            if (this.GO == null)
+            if (this.GO==null||this.GO.name!="H_Wall(Clone)")
             {
                 selected = !selected;
                 if (selected)
                 {
                     Hub.target.x = x;
                     Hub.target.y = y;
+                    Hub.target.GO = GO;
                 }
                 else
                 {
+                    Hub.target.GO = null;
                     Hub.target.x = Hub.target.y = null;
                 }
                 Unselected();
             }
         }
-        void OnTriggerEnter(Collider other)
+        void OnTriggerStay(Collider other)
         {
             GO = other.gameObject;
+            if (GO.GetComponent<action_cs>() != null)            
+                GO.GetComponent<action_cs>()._pos = new IMove.Pos() { x = x, y = y };
+            
             if (GO.name == "player")
             {
 
@@ -58,11 +60,11 @@ namespace Assets.Scrits
         }
         void Unselected()
         {
-            for (int x=0;x<Map.map.GetUpperBound(0)+1;x++)
-                for (int y=0;y< Map.map.GetUpperBound(1)+1;y++)
+            for (int x = 0; x < Map.map.GetUpperBound(0) + 1; x++)
+                for (int y = 0; y < Map.map.GetUpperBound(1) + 1; y++)
                 {
-                    if (this !=Map.map[x, y].GetComponent<Level>())
-                    Map.map[x, y].GetComponent<Level>().selected = false;
+                    if (this != Map.map[x, y].GetComponent<Level>())
+                        Map.map[x, y].GetComponent<Level>().selected = false;
                 }
         }
 

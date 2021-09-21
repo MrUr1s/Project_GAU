@@ -48,7 +48,13 @@ namespace Assets.Scrits
                 }
             Wall_create(ref Map.map);
             Enemy_create(Map.map);
+            Chest_create(Map.map);
 
+        }
+
+        private void Chest_create(Level[,] map)
+        {
+          
         }
 
         void Enemy_create(Level[,] map)
@@ -126,6 +132,11 @@ namespace Assets.Scrits
         {
             foreach (var go in GameObject.FindGameObjectsWithTag("Level"))
                 if (go.layer == LayerMask.NameToLayer("Level"))
+                {
+                    Destroy(go);
+                }
+            foreach (var go in GameObject.FindGameObjectsWithTag("Enemy"))
+                if (go.layer == LayerMask.NameToLayer("Enemy"))
                 {
                     Destroy(go);
                 }

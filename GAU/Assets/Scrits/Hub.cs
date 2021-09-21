@@ -23,14 +23,15 @@ namespace Assets.Scrits
         public struct Target
         {
             public int? x;
-            public int? y;            
+            public int? y;
+            public GameObject GO;
         }
         [SerializeField]
         public static Target target;
 
         public GameObject character_window, invetory;
         public Text col_step_text;
-        public Transform player;
+        public GameObject player;
         public Transform evasion, defense;
         public float speed = 5f;
         public bool isGame = true;
@@ -54,18 +55,34 @@ namespace Assets.Scrits
         {
             if (isGame)
             {
+                if (Input.GetKey(KeyCode.Space))
+                    isMove = !isMove;               
                 if (target.x != null && target.y != null)
                 {
                     int x = target.x.GetValueOrDefault(), y = target.y.GetValueOrDefault();
-                    if (Input.GetKey(KeyCode.Space))
-                        isMove = !isMove;
-                    if (isMove)
+                    if (target.GO == null)
                     {
-                        Move(player.GetComponent<Player_sc>().Move(x, y), ref player.GetComponent<Player_sc>()._pos.x,
-                           ref player.GetComponent<Player_sc>()._pos.y, x, y);
-
+                        Vector3 move = player.GetComponent<Player_sc>().Move(x, y, ref isMove);
+                        if (isMove)
+                        {
+                            player.transform.position = move;
+                        }
+                    }
+                    else
+                    switch (target.GO.name)
+                    {
+                            case "Enemy(Clone)":
+                                player.transform.position=player.GetComponent<Player_sc>().Attack(target.GO.GetComponent<Enemy>(),ref isMove);
+                                break;
+                            case "Cheast(Clone)":
+                                break;
+                            default:
+                                Debug.Log(target.GO.name);
+                            break;
 
                     }
+
+                    
                 }
                 //if (step != 0 && !isMove && player.position != target.position)
                 //{
@@ -76,39 +93,7 @@ namespace Assets.Scrits
                 //col_step_text.text = step.ToString();
             }
         }
-        void Move(int[,] map, ref int curentposx, ref int curentposy, int targetposx, int targetposy)
-        {
-            if (curentposx != targetposx || curentposy != targetposy)
-            {                
-                if (map[curentposx + 1, curentposy] == map[curentposx, curentposy] - 1)
-                {
-                    curentposx += 1;
-                    player.position = Vector3.MoveTowards(player.position, Map.map[curentposx, curentposy].GetComponent<Transform>().position, speed);
-                    return;
-                }
-                if (map[curentposx - 1, curentposy] == map[curentposx, curentposy] - 1)
-                {
-                    curentposx -= 1;
-                    player.position = Vector3.MoveTowards(player.position, Map.map[curentposx, curentposy].GetComponent<Transform>().position, speed);
-                    return;
-                }
-                if (map[curentposx, curentposy + 1] == map[curentposx, curentposy] - 1)
-                {
-                    curentposy += 1;
-                    player.position = Vector3.MoveTowards(player.position, Map.map[curentposx, curentposy].GetComponent<Transform>().position, speed);
-                    return;
-                }
-                if (map[curentposx, curentposy - 1] == map[curentposx, curentposy] - 1)
-                {
-                    curentposy -= 1;
-                    player.position = Vector3.MoveTowards(player.position, Map.map[curentposx, curentposy].GetComponent<Transform>().position, speed);
-                    return;
-                }
-            }
-            else isMove = false;
-        }
-
-        
+             
        
 
         IEnumerator hit(GameObject enemy, string what, int hit = 0)

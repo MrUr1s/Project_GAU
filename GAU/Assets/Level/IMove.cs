@@ -1,4 +1,5 @@
-﻿namespace Assets.Scrits
+﻿using UnityEngine;
+namespace Assets.Scrits
 {
     public interface IMove
     {
@@ -8,7 +9,7 @@
             public int y;
         }
         int[,] Move_map();
-        public int[,] Move(int targetx, int targety);
-        public void Move_map(ref int[,] map, int map_step, int x, int y);
+        public Vector3 Move(int targetx, int targety,ref bool ismove);
+        public void Move_map(ref int[,] map, int x, int y,ref bool ismove);
     }
 }
