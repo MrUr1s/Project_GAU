@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1358
     height: 721
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Game
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 521}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 0
 --- !u!114 &2
@@ -46,7 +46,7 @@ MonoBehaviour:
     y: 0
     width: 1358
     height: 721
-  m_MinSize: {x: 875, y: 300}
+  m_MinSize: {x: 875, y: 521}
   m_MaxSize: {x: 10000, y: 10000}
   m_UseTopView: 1
   m_TopViewHeight: 30
@@ -116,10 +116,10 @@ MonoBehaviour:
     y: 30
     width: 1358
     height: 671
-  m_MinSize: {x: 609, y: 492}
-  m_MaxSize: {x: 18004, y: 14042}
+  m_MinSize: {x: 608, y: 471}
+  m_MaxSize: {x: 18003, y: 14021}
   vertical: 0
-  controlID: 62
+  controlID: 58
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,10 +141,10 @@ MonoBehaviour:
     y: 0
     width: 1037
     height: 671
-  m_MinSize: {x: 333, y: 492}
-  m_MaxSize: {x: 14003, y: 14042}
+  m_MinSize: {x: 333, y: 471}
+  m_MaxSize: {x: 14003, y: 14021}
   vertical: 1
-  controlID: 70
+  controlID: 59
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_MinSize: {x: 333, y: 271}
   m_MaxSize: {x: 14003, y: 10021}
   vertical: 0
-  controlID: 71
+  controlID: 60
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -313,9 +313,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -24.323957, y: 6.557313, z: 1.5534363}
+    m_Target: {x: 21.39928, y: 36.792545, z: 4.5668592}
     speed: 2
-    m_Value: {x: -24.323957, y: 6.557313, z: 1.5534363}
+    m_Value: {x: 21.39928, y: 36.792545, z: 4.5668592}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -362,20 +362,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.026948472, y: -0.059942152, z: 0.0016197425, w: 0.9978446}
+    m_Target: {x: -0.11872644, y: -0.5003058, z: -0.069482185, w: 0.8548637}
     speed: 2
-    m_Value: {x: 0.02694826, y: -0.05994168, z: 0.0016197298, w: 0.9978367}
+    m_Value: {x: -0.12150156, y: -0.49752396, z: -0.07061788, w: 0.8559909}
   m_Size:
-    m_Target: 67.38993
+    m_Target: 9.700119
     speed: 2
-    m_Value: 67.38993
+    m_Value: 10.157192
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.0804601
-    m_SpeedNormalized: 0.54
+    m_Speed: 0.5007508
+    m_SpeedNormalized: 0.2500004
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
@@ -424,7 +424,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 204c0000
       m_LastClickedID: 19488
-      m_ExpandedIDs: 46fbffff
+      m_ExpandedIDs: 06d2ffff46fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -513,21 +513,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scrits
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scrits
+  - Assets
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\Github\Project_GAU\GAU
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 564e0000
-    m_LastClickedID: 20054
+    m_SelectedIDs: 264e0000
+    m_LastClickedID: 20006
     m_ExpandedIDs: 00000000264e0000284e00002a4e00002c4e00002e4e0000304e0000324e0000344e000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -583,7 +583,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000564e0000544f0000504f000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -608,7 +608,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 113.5}
+    m_ScrollPosition: {x: 0, y: 0}
     m_GridSize: 64
   m_SkipHiddenPackages: 0
   m_DirectoriesAreaWidth: 111
@@ -737,7 +737,7 @@ MonoBehaviour:
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_LastInspectedObjectInstanceID: -1
-  m_LastVerticalScrollValue: 312
+  m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
   m_LockTracker:

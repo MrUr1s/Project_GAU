@@ -7,7 +7,7 @@ namespace Assets.Scrits
 {
     public class Maps : MonoBehaviour
     {
-        public GameObject levels, h_Wall,door,enemy;
+        public GameObject levels, h_Wall,door,enemy, chest;
 
         [System.Serializable]
         public struct Size
@@ -23,7 +23,7 @@ namespace Assets.Scrits
         bool isclick = false;
         bool b = true;
         Vector3 pos;
-        public int col_enemy=0;
+        public int col_enemy = 0, col_chest=0;
         [ContextMenu("Start")]
         void Start()
         {
@@ -54,7 +54,25 @@ namespace Assets.Scrits
 
         private void Chest_create(Level[,] map)
         {
-          
+            int col = 0;
+            for (int y = (int)(size.y * 0.25); y < size.y; y++)
+                for (int x = (int)(size.x * 0.25); x < size.x; x++)
+                    if (map[x, y].GO == null)
+                    {
+                        if (col < col_chest)
+
+                            if ((map[x + 1, y].GO != null && map[x, y + 1].GO != null && map[x, y - 1].GO != null) ||
+                                (map[x - 1, y].GO != null && map[x, y + 1].GO != null && map[x, y - 1].GO != null) ||
+                                (map[x, y + 1].GO != null && map[x + 1, y].GO != null && map[x - 1, y].GO != null) ||
+                                (map[x, y - 1].GO != null && map[x + 1, y].GO != null && map[x - 1, y].GO != null))
+                            {
+                                Instantiate(chest, new Vector3(x * level_size.x, y * level_size.y, 1) + pos,
+                                    Quaternion.identity, this.gameObject.transform).GetComponent<Chest_sc>()._pos
+                                    = new Chest_sc.Pos() { x = x, y = y };
+                                col++;
+                            }
+                        
+                    }
         }
 
         void Enemy_create(Level[,] map)

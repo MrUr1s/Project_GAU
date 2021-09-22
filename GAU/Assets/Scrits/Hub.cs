@@ -74,7 +74,8 @@ namespace Assets.Scrits
                             case "Enemy(Clone)":
                                 player.transform.position=player.GetComponent<Player_sc>().Attack(target.GO.GetComponent<Enemy>(),ref isMove);
                                 break;
-                            case "Cheast(Clone)":
+                            case "Chest(Clone)":
+                                player.transform.position = player.GetComponent<Player_sc>().Move_Use(target.GO.GetComponent<Chest_sc>(), ref isMove);
                                 break;
                             default:
                                 Debug.Log(target.GO.name);

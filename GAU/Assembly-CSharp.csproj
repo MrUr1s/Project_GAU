@@ -80,12 +80,14 @@
     <Compile Include="Assets\Lang\Lang.cs" />
     <Compile Include="Assets\Scrits\Hub.cs" />
     <Compile Include="Assets\Scrits\IHaracteristisc.cs" />
-    <Compile Include="Assets\Level\IMove.cs" />
-    <Compile Include="Assets\Level\action_cs.cs" />
     <Compile Include="Assets\Scrits\Character1.cs" />
     <Compile Include="Assets\Characters\Character.cs" />
     <Compile Include="Assets\Scrits\smoothcamera.cs" />
     <Compile Include="Assets\Scrits\Character_changer_color.cs" />
+    <Compile Include="Assets\Scrits\IUSE.cs" />
+    <Compile Include="Assets\Chest_sc.cs" />
+    <Compile Include="Assets\Scrits\IMove.cs" />
+    <Compile Include="Assets\Scrits\action_cs.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Level\level.xml" />
